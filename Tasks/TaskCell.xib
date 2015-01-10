@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="QO2-QS-XYA" customClass="TaskCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QO2-QS-XYA" id="haY-vR-dfp" userLabel="Task Cell">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy milk" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="btu-O0-2ew" userLabel="Name">
+                        <rect key="frame" x="26" y="8" width="278" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCw-9l-IHI" userLabel="Category">
+                        <rect key="frame" x="8" y="8" width="10" height="53"/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="phe-Th-Hxs"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="24/01/15 11:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sN5-9b-aUq" userLabel="Due">
+                        <rect key="frame" x="26" y="45" width="278" height="16"/>
+                        <accessibility key="accessibilityConfiguration" label=""/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jCw-9l-IHI" firstAttribute="bottom" secondItem="haY-vR-dfp" secondAttribute="bottomMargin" id="0Us-uq-390"/>
+                    <constraint firstItem="jCw-9l-IHI" firstAttribute="leading" secondItem="haY-vR-dfp" secondAttribute="leadingMargin" id="667-O7-BJu"/>
+                    <constraint firstItem="sN5-9b-aUq" firstAttribute="top" secondItem="btu-O0-2ew" secondAttribute="bottom" constant="16" id="BKu-H7-0Dm"/>
+                    <constraint firstItem="sN5-9b-aUq" firstAttribute="bottom" secondItem="haY-vR-dfp" secondAttribute="bottomMargin" id="BP9-9S-DmP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="btu-O0-2ew" secondAttribute="trailing" constant="8" id="Bdm-kA-KSB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="sN5-9b-aUq" secondAttribute="trailing" constant="8" id="CsR-sI-soy"/>
+                    <constraint firstItem="jCw-9l-IHI" firstAttribute="top" secondItem="haY-vR-dfp" secondAttribute="topMargin" id="JDJ-Jo-wz4"/>
+                    <constraint firstItem="btu-O0-2ew" firstAttribute="leading" secondItem="jCw-9l-IHI" secondAttribute="trailing" constant="8" id="dXa-FV-aP1"/>
+                    <constraint firstItem="sN5-9b-aUq" firstAttribute="leading" secondItem="jCw-9l-IHI" secondAttribute="trailing" constant="8" id="fyT-0E-c5K"/>
+                    <constraint firstItem="btu-O0-2ew" firstAttribute="top" secondItem="haY-vR-dfp" secondAttribute="topMargin" id="sC9-z2-reF"/>
+                    <constraint firstItem="sN5-9b-aUq" firstAttribute="top" secondItem="btu-O0-2ew" secondAttribute="bottom" constant="16" id="ta4-VY-MKh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="category" destination="jCw-9l-IHI" id="VRT-AU-IDp"/>
+                <outlet property="due" destination="sN5-9b-aUq" id="t2g-QH-9vl"/>
+                <outlet property="name" destination="btu-O0-2ew" id="i0k-K0-FTJ"/>
+            </connections>
+            <point key="canvasLocation" x="429" y="278"/>
+        </tableViewCell>
+    </objects>
+</document>
