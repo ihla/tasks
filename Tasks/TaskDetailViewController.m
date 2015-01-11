@@ -23,12 +23,16 @@ static NSString *kDateCellID = @"dateCell";
 static NSString *kDatePickerID = @"datePicker";
 static NSString *kCategoryCell = @"categoryCell";
 
-static NSInteger kNameRow = 0;
-static NSInteger kCategoryRow = 1;
-static NSInteger kRemindMeRow = 2;
-static NSInteger kDateRow = 3; // inserted/deleted depending on the switch in remind me row
+// table view sections and rows (why not make it as static cells instead???)
+static NSInteger kAlarmSection = 2;
+static NSInteger kRemindMeRow = 0;
+static NSInteger kDateRow = 1; // inserted/deleted depending on the switch in remind me row
 
-static NSInteger kNumberOfStaticRows = 3;
+static NSInteger kNumberOfStaticRowsInNameSection = 1;
+static NSInteger kNumberOfStaticRowsInCategorySection = 1;
+static NSInteger kNumberOfStaticRowsInAlarmSection = 1;
+
+static NSInteger kNumberOfSections = 3;
 
 @interface TaskDetailViewController ()
 
@@ -41,7 +45,7 @@ static NSInteger kNumberOfStaticRows = 3;
 
 @property (nonatomic, strong) IBOutlet UIDatePicker *pickerView;
 
-@property (assign) NSInteger numberOfRows;
+@property (assign) NSInteger alarmSectionNumberOfRows;
 
 @property(nonatomic) NSDate *setDate;
 
@@ -97,7 +101,7 @@ static NSInteger kNumberOfStaticRows = 3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.numberOfRows = kNumberOfStaticRows;
+    self.alarmSectionNumberOfRows = kNumberOfStaticRowsInAlarmSection;
     
     self.setDate = [NSDate date]; // set the current date as init value
     
@@ -158,7 +162,7 @@ static NSInteger kNumberOfStaticRows = 3;
     targetedRow++;
     
     UITableViewCell *checkDatePickerCell =
-    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:targetedRow inSection:0]];
+    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:targetedRow inSection:kAlarmSection]];
     UIDatePicker *checkDatePicker = (UIDatePicker *)[checkDatePickerCell viewWithTag:kDatePickerTag];
     
     hasDatePicker = (checkDatePicker != nil);
@@ -196,7 +200,7 @@ static NSInteger kNumberOfStaticRows = 3;
  */
 - (BOOL)indexPathHasPicker:(NSIndexPath *)indexPath
 {
-    return ([self hasInlineDatePicker] && self.datePickerIndexPath.row == indexPath.row);
+    return ([self hasInlineDatePicker] && self.datePickerIndexPath.section == indexPath.section && self.datePickerIndexPath.row == indexPath.row);
 }
 
 #pragma mark - Table view data source
@@ -206,9 +210,22 @@ static NSInteger kNumberOfStaticRows = 3;
     return ([self indexPathHasPicker:indexPath] ? self.pickerCellRowHeight : 44);
 }
 
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    return kNumberOfSections;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.numberOfRows;
+    switch (section) {
+        case 0:
+            return kNumberOfStaticRowsInNameSection;
+        case 1:
+            return kNumberOfStaticRowsInCategorySection;
+        case 2:
+            return self.alarmSectionNumberOfRows;
+        default:
+            return -1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -217,19 +234,30 @@ static NSInteger kNumberOfStaticRows = 3;
 
     NSString *cellID = nil;
     
-    if (indexPath.row == kNameRow) {
-        cellID = kNameCellID;
-    } else if (indexPath.row == kCategoryRow) {
-        cellID = kCategoryCell;
-    } else if (indexPath.row == kRemindMeRow) {
-        cellID = kRemindMeCellID;
-    } else if (indexPath.row == kDateRow) {
-        cellID = kDateCellID;
-    } else if ([self indexPathHasPicker:indexPath]) {
-        cellID = kDatePickerID;
+    switch (indexPath.section) {
+        case 0:
+            cellID = kNameCellID;
+            break;
+        case 1:
+            cellID = kCategoryCell;
+            break;
+        case 2:
+            if (indexPath.row == kRemindMeRow) {
+                cellID = kRemindMeCellID;
+            } else if (indexPath.row == kDateRow) {
+                cellID = kDateCellID;
+            } else if ([self indexPathHasPicker:indexPath]) {
+                cellID = kDatePickerID;
+            }
+            break;
     }
     
     cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+
+    if ([cellID isEqualToString:kRemindMeCellID])
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
 
     if ([cellID isEqualToString:kDateCellID])
     {
@@ -264,7 +292,7 @@ static NSInteger kNumberOfStaticRows = 3;
 {
     [self.tableView beginUpdates];
     
-    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0]];
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:kAlarmSection]];
     
     // check if 'indexPath' has an attached date picker below it
     if ([self hasPickerForIndexPath:indexPath])
@@ -272,14 +300,14 @@ static NSInteger kNumberOfStaticRows = 3;
         // found a picker below it, so remove it
         [self.tableView deleteRowsAtIndexPaths:indexPaths
                               withRowAnimation:UITableViewRowAnimationFade];
-        self.numberOfRows--;
+        self.alarmSectionNumberOfRows--;
     }
     else
     {
         // didn't find a picker below it, so we should insert it
         [self.tableView insertRowsAtIndexPaths:indexPaths
                               withRowAnimation:UITableViewRowAnimationFade];
-        self.numberOfRows++;
+        self.alarmSectionNumberOfRows++;
     }
     
     [self.tableView endUpdates];
@@ -290,8 +318,8 @@ static NSInteger kNumberOfStaticRows = 3;
     // remove any date picker cell if it exists
     if ([self hasInlineDatePicker])
     {
-        self.numberOfRows--;
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.datePickerIndexPath.row inSection:0]]
+        self.alarmSectionNumberOfRows--;
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.datePickerIndexPath.row inSection:kAlarmSection]]
                               withRowAnimation:UITableViewRowAnimationFade];
         self.datePickerIndexPath = nil;
     }
@@ -320,10 +348,10 @@ static NSInteger kNumberOfStaticRows = 3;
     {
         // hide the old date picker and display the new one
         NSInteger rowToReveal = (before ? indexPath.row - 1 : indexPath.row);
-        NSIndexPath *indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:0];
+        NSIndexPath *indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:kAlarmSection];
         
         [self toggleDatePickerForSelectedIndexPath:indexPathToReveal];
-        self.datePickerIndexPath = [NSIndexPath indexPathForRow:indexPathToReveal.row + 1 inSection:0];
+        self.datePickerIndexPath = [NSIndexPath indexPathForRow:indexPathToReveal.row + 1 inSection:kAlarmSection];
     }
     
     // always deselect the row containing the start or end date
@@ -338,8 +366,8 @@ static NSInteger kNumberOfStaticRows = 3;
 -(void)insertAlarmRow {
     [self.tableView beginUpdates];
     
-    self.numberOfRows++;
-    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:kDateRow inSection:0]];
+    self.alarmSectionNumberOfRows++;
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:kDateRow inSection:kAlarmSection]];
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
 
     [self.tableView endUpdates];
@@ -348,8 +376,8 @@ static NSInteger kNumberOfStaticRows = 3;
 -(void)deleteAlarmRows {
     [self.tableView beginUpdates];
     
-    self.numberOfRows--;
-    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:kDateRow inSection:0]];
+    self.alarmSectionNumberOfRows--;
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:kDateRow inSection:kAlarmSection]];
     [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
     
     [self deleteDatePickerRowIfExists];
