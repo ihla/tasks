@@ -11,6 +11,7 @@
 		2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */; };
 		2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */; };
 		2024EF751A62B41000C4D3C3 /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF741A62B41000C4D3C3 /* CategoryTableViewController.m */; };
+		2024EF781A62CA9700C4D3C3 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */; };
 		20CA618E1A61109B0078153D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA618D1A61109B0078153D /* main.m */; };
 		20CA61911A61109B0078153D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61901A61109B0078153D /* AppDelegate.m */; };
 		20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61921A61109B0078153D /* Tasks.xcdatamodeld */; };
@@ -44,6 +45,8 @@
 		2024EF721A626A0100C4D3C3 /* Debuglog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debuglog.h; sourceTree = "<group>"; };
 		2024EF731A62B41000C4D3C3 /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewController.h; sourceTree = "<group>"; };
 		2024EF741A62B41000C4D3C3 /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewController.m; sourceTree = "<group>"; };
+		2024EF761A62CA9700C4D3C3 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		20CA61881A61109B0078153D /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CA618C1A61109B0078153D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CA618D1A61109B0078153D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 				2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */,
 				2024EF731A62B41000C4D3C3 /* CategoryTableViewController.h */,
 				2024EF741A62B41000C4D3C3 /* CategoryTableViewController.m */,
+				2024EF761A62CA9700C4D3C3 /* SettingsTableViewController.h */,
+				2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */,
 				20CA619B1A61109B0078153D /* Main.storyboard */,
 				20CA619E1A61109B0078153D /* Images.xcassets */,
 				20CA61A01A61109B0078153D /* LaunchScreen.xib */,
@@ -304,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2024EF781A62CA9700C4D3C3 /* SettingsTableViewController.m in Sources */,
 				2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */,
 				2024EF751A62B41000C4D3C3 /* CategoryTableViewController.m in Sources */,
 				2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */,
