@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF661A61354C00C4D3C3 /* TaskCell.m */; };
 		2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */; };
+		2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */; };
 		20CA618E1A61109B0078153D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA618D1A61109B0078153D /* main.m */; };
 		20CA61911A61109B0078153D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61901A61109B0078153D /* AppDelegate.m */; };
 		20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61921A61109B0078153D /* Tasks.xcdatamodeld */; };
-		20CA61971A61109B0078153D /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61961A61109B0078153D /* MasterViewController.m */; };
-		20CA619A1A61109B0078153D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61991A61109B0078153D /* DetailViewController.m */; };
 		20CA619D1A61109B0078153D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20CA619B1A61109B0078153D /* Main.storyboard */; };
 		20CA619F1A61109B0078153D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20CA619E1A61109B0078153D /* Images.xcassets */; };
 		20CA61A21A61109B0078153D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20CA61A01A61109B0078153D /* LaunchScreen.xib */; };
@@ -38,16 +37,16 @@
 		2024EF661A61354C00C4D3C3 /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		2024EF681A6138CA00C4D3C3 /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
 		2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
+		2024EF6B1A61614300C4D3C3 /* TaskDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailViewController.h; sourceTree = "<group>"; };
+		2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailViewController.m; sourceTree = "<group>"; };
+		2024EF6E1A61629D00C4D3C3 /* UnwindDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnwindDelegate.h; sourceTree = "<group>"; };
+		2024EF721A626A0100C4D3C3 /* Debuglog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debuglog.h; sourceTree = "<group>"; };
 		20CA61881A61109B0078153D /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CA618C1A61109B0078153D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CA618D1A61109B0078153D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		20CA618F1A61109B0078153D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		20CA61901A61109B0078153D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		20CA61931A61109B0078153D /* Tasks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tasks.xcdatamodel; sourceTree = "<group>"; };
-		20CA61951A61109B0078153D /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		20CA61961A61109B0078153D /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		20CA61981A61109B0078153D /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		20CA61991A61109B0078153D /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		20CA619C1A61109B0078153D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20CA619E1A61109B0078153D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		20CA61A11A61109B0078153D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -101,17 +100,17 @@
 		20CA618A1A61109B0078153D /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				2024EF721A626A0100C4D3C3 /* Debuglog.h */,
+				2024EF6E1A61629D00C4D3C3 /* UnwindDelegate.h */,
 				20CA618F1A61109B0078153D /* AppDelegate.h */,
 				20CA61901A61109B0078153D /* AppDelegate.m */,
-				20CA61951A61109B0078153D /* MasterViewController.h */,
-				20CA61961A61109B0078153D /* MasterViewController.m */,
-				20CA61981A61109B0078153D /* DetailViewController.h */,
-				20CA61991A61109B0078153D /* DetailViewController.m */,
 				2024EF681A6138CA00C4D3C3 /* TasksTableViewController.h */,
 				2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */,
 				2024EF651A61354C00C4D3C3 /* TaskCell.h */,
 				2024EF661A61354C00C4D3C3 /* TaskCell.m */,
 				20CA61B71A612CA50078153D /* TaskCell.xib */,
+				2024EF6B1A61614300C4D3C3 /* TaskDetailViewController.h */,
+				2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */,
 				20CA619B1A61109B0078153D /* Main.storyboard */,
 				20CA619E1A61109B0078153D /* Images.xcassets */,
 				20CA61A01A61109B0078153D /* LaunchScreen.xib */,
@@ -301,8 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */,
-				20CA619A1A61109B0078153D /* DetailViewController.m in Sources */,
-				20CA61971A61109B0078153D /* MasterViewController.m in Sources */,
+				2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */,
 				20CA61911A61109B0078153D /* AppDelegate.m in Sources */,
 				2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */,
 				20CA618E1A61109B0078153D /* main.m in Sources */,

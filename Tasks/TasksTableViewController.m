@@ -8,14 +8,17 @@
 
 #import "TasksTableViewController.h"
 #import "TaskCell.h"
+#import "TaskDetailViewController.h"
 
 static NSString * const CellIdentifier = @"TaskCell";
 
-@interface TasksTableViewController () <SWTableViewCellDelegate>
+@interface TasksTableViewController () <SWTableViewCellDelegate, UnwindDelegate>
 
 @end
 
 @implementation TasksTableViewController
+
+#pragma mark - Life Cycle Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -105,14 +108,26 @@ static NSString * const CellIdentifier = @"TaskCell";
 }
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UINavigationController *nvc = (UINavigationController *)segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"showNewTask"]) {
+        TaskDetailViewController *taskDetailController = (TaskDetailViewController*)nvc.topViewController;
+        taskDetailController.unwindDelegate = self;
+
+    }
 }
-*/
+
+#pragma mark - UnwindDelegate
+
+-(void)unwind:(UIViewController*)controller {
+    if ([controller isKindOfClass:[TaskDetailViewController class]]) {
+        // retrieve return data from ctrl if necessary
+    }
+    [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+
+}
 
 @end

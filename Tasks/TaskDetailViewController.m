@@ -1,0 +1,371 @@
+//
+//  TaskDetailViewController.m
+//  Tasks
+//
+//  Created by Lubos Ilcik on 1/10/15.
+//  Copyright (c) 2015 Lubos Ilcik. All rights reserved.
+//
+
+/**
+ * NOTE:    This implementation is based on the sources from Apple DateCell sample
+ *          (https://developer.apple.com/library/ios/samplecode/DateCell/)
+ *          and is adapted to my needs.
+ *          The code is a work in progress and needs further refactoring.
+ */
+
+#import "TaskDetailViewController.h"
+
+#define kDatePickerTag              99     // view tag identifiying the date picker view
+
+static NSString *kNameCellID = @"nameCell";
+static NSString *kRemindMeCellID = @"remindMeCell";
+static NSString *kDateCellID = @"dateCell";
+static NSString *kDatePickerID = @"datePicker";
+static NSString *kCategoryCell = @"categoryCell";
+
+static NSInteger kNameRow = 0;
+static NSInteger kCategoryRow = 1;
+static NSInteger kRemindMeRow = 2;
+static NSInteger kDateRow = 3; // inserted/deleted depending on the switch in remind me row
+
+static NSInteger kNumberOfStaticRows = 3;
+
+@interface TaskDetailViewController ()
+
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
+// keep track which indexPath points to the cell with UIDatePicker
+@property (nonatomic, strong) NSIndexPath *datePickerIndexPath;
+
+@property (assign) NSInteger pickerCellRowHeight;
+
+@property (nonatomic, strong) IBOutlet UIDatePicker *pickerView;
+
+@property (assign) NSInteger numberOfRows;
+
+@property(nonatomic) NSDate *setDate;
+
+@end
+
+@implementation TaskDetailViewController
+
+#pragma mark - IB Actions
+
+- (IBAction)done:(id)sender {
+    [self.unwindDelegate unwind:self];
+}
+
+- (IBAction)switchAlarm:(UISwitch*)sender {
+    if (sender.on) {
+        [self insertAlarmRow];
+    } else {
+        [self deleteAlarmRows];
+    }
+}
+
+/*! User chose to change the date by changing the values inside the UIDatePicker.
+ 
+ @param sender The sender for this action: UIDatePicker.
+ */
+- (IBAction)dateAction:(id)sender
+{
+    NSIndexPath *targetedCellIndexPath = nil;
+    
+    if ([self hasInlineDatePicker])
+    {
+        // inline date picker: update the cell's date "above" the date picker cell
+        //
+        targetedCellIndexPath = [NSIndexPath indexPathForRow:self.datePickerIndexPath.row - 1 inSection:0];
+    }
+    else
+    {
+        // external date picker: update the current "selected" cell's date
+        targetedCellIndexPath = [self.tableView indexPathForSelectedRow];
+    }
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:targetedCellIndexPath];
+    UIDatePicker *targetedDatePicker = sender;
+    
+    self.setDate = targetedDatePicker.date;
+    
+    // update the cell's date string
+    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:targetedDatePicker.date];
+}
+
+#pragma mark - Life Cycle Methods
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.numberOfRows = kNumberOfStaticRows;
+    
+    self.setDate = [NSDate date]; // set the current date as init value
+    
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    // obtain the picker view cell's height, works because the cell was pre-defined in our storyboard
+    UITableViewCell *pickerViewCellToCheck = [self.tableView dequeueReusableCellWithIdentifier:kDatePickerID];
+    self.pickerCellRowHeight = CGRectGetHeight(pickerViewCellToCheck.frame);
+    
+    // if the local changes while in the background, we need to be notified so we can update the date
+    // format in the table view cells
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(localeChanged:)
+                                                 name:NSCurrentLocaleDidChangeNotification
+                                               object:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSCurrentLocaleDidChangeNotification
+                                                  object:nil];
+}
+
+
+#pragma mark - Locale
+
+/*! Responds to region format or locale changes.
+ */
+- (void)localeChanged:(NSNotification *)notif
+{
+    // the user changed the locale (region format) in Settings, so we are notified here to
+    // update the date format in the table view cells
+    //
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - Utilities
+
+/*! Determines if the given indexPath has a cell below it with a UIDatePicker.
+ 
+ @param indexPath The indexPath to check if its cell has a UIDatePicker below it.
+ */
+- (BOOL)hasPickerForIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL hasDatePicker = NO;
+    
+    NSInteger targetedRow = indexPath.row;
+    targetedRow++;
+    
+    UITableViewCell *checkDatePickerCell =
+    [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:targetedRow inSection:0]];
+    UIDatePicker *checkDatePicker = (UIDatePicker *)[checkDatePickerCell viewWithTag:kDatePickerTag];
+    
+    hasDatePicker = (checkDatePicker != nil);
+    return hasDatePicker;
+}
+
+/*! Updates the UIDatePicker's value to match with the date of the cell above it.
+ */
+- (void)updateDatePicker
+{
+    if (self.datePickerIndexPath != nil)
+    {
+        UITableViewCell *associatedDatePickerCell = [self.tableView cellForRowAtIndexPath:self.datePickerIndexPath];
+        
+        UIDatePicker *targetedDatePicker = (UIDatePicker *)[associatedDatePickerCell viewWithTag:kDatePickerTag];
+        if (targetedDatePicker != nil)
+        {
+            // we found a UIDatePicker in this cell, so update it's date value
+            //
+            [targetedDatePicker setDate:self.setDate animated:NO];
+        }
+    }
+}
+
+/*! Determines if the UITableViewController has a UIDatePicker in any of its cells.
+ */
+- (BOOL)hasInlineDatePicker
+{
+    return (self.datePickerIndexPath != nil);
+}
+
+/*! Determines if the given indexPath points to a cell that contains the UIDatePicker.
+ 
+ @param indexPath The indexPath to check if it represents a cell with the UIDatePicker.
+ */
+- (BOOL)indexPathHasPicker:(NSIndexPath *)indexPath
+{
+    return ([self hasInlineDatePicker] && self.datePickerIndexPath.row == indexPath.row);
+}
+
+#pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ([self indexPathHasPicker:indexPath] ? self.pickerCellRowHeight : 44);
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.numberOfRows;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = nil;
+
+    NSString *cellID = nil;
+    
+    if (indexPath.row == kNameRow) {
+        cellID = kNameCellID;
+    } else if (indexPath.row == kCategoryRow) {
+        cellID = kCategoryCell;
+    } else if (indexPath.row == kRemindMeRow) {
+        cellID = kRemindMeCellID;
+    } else if (indexPath.row == kDateRow) {
+        cellID = kDateCellID;
+    } else if ([self indexPathHasPicker:indexPath]) {
+        cellID = kDatePickerID;
+    }
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+
+    if ([cellID isEqualToString:kDateCellID])
+    {
+        cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.setDate];
+    }
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell.reuseIdentifier == kDateCellID)
+    {
+        [self displayInlineDatePickerForRowAtIndexPath:indexPath];
+    }
+    else
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+#pragma mark - TableView Manipulate Methods
+
+/*! Adds or removes a UIDatePicker cell below the given indexPath.
+ 
+ @param indexPath The indexPath to reveal the UIDatePicker.
+ */
+- (void)toggleDatePickerForSelectedIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView beginUpdates];
+    
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0]];
+    
+    // check if 'indexPath' has an attached date picker below it
+    if ([self hasPickerForIndexPath:indexPath])
+    {
+        // found a picker below it, so remove it
+        [self.tableView deleteRowsAtIndexPaths:indexPaths
+                              withRowAnimation:UITableViewRowAnimationFade];
+        self.numberOfRows--;
+    }
+    else
+    {
+        // didn't find a picker below it, so we should insert it
+        [self.tableView insertRowsAtIndexPaths:indexPaths
+                              withRowAnimation:UITableViewRowAnimationFade];
+        self.numberOfRows++;
+    }
+    
+    [self.tableView endUpdates];
+}
+
+- (void)deleteDatePickerRowIfExists
+{
+    // remove any date picker cell if it exists
+    if ([self hasInlineDatePicker])
+    {
+        self.numberOfRows--;
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.datePickerIndexPath.row inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationFade];
+        self.datePickerIndexPath = nil;
+    }
+}
+
+/*! Reveals the date picker inline for the given indexPath, called by "didSelectRowAtIndexPath".
+ 
+ @param indexPath The indexPath to reveal the UIDatePicker.
+ */
+- (void)displayInlineDatePickerForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // display the date picker inline with the table content
+    [self.tableView beginUpdates];
+    
+    BOOL before = NO;   // indicates if the date picker is below "indexPath", help us determine which row to reveal
+    if ([self hasInlineDatePicker])
+    {
+        before = self.datePickerIndexPath.row < indexPath.row;
+    }
+    
+    BOOL sameCellClicked = (self.datePickerIndexPath.row - 1 == indexPath.row);
+    
+    [self deleteDatePickerRowIfExists];
+    
+    if (!sameCellClicked)
+    {
+        // hide the old date picker and display the new one
+        NSInteger rowToReveal = (before ? indexPath.row - 1 : indexPath.row);
+        NSIndexPath *indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:0];
+        
+        [self toggleDatePickerForSelectedIndexPath:indexPathToReveal];
+        self.datePickerIndexPath = [NSIndexPath indexPathForRow:indexPathToReveal.row + 1 inSection:0];
+    }
+    
+    // always deselect the row containing the start or end date
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.tableView endUpdates];
+    
+    // inform our date picker of the current date to match the current cell
+    [self updateDatePicker];
+}
+
+-(void)insertAlarmRow {
+    [self.tableView beginUpdates];
+    
+    self.numberOfRows++;
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:kDateRow inSection:0]];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+
+    [self.tableView endUpdates];
+}
+
+-(void)deleteAlarmRows {
+    [self.tableView beginUpdates];
+    
+    self.numberOfRows--;
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:kDateRow inSection:0]];
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self deleteDatePickerRowIfExists];
+    
+    [self.tableView endUpdates];
+    
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
