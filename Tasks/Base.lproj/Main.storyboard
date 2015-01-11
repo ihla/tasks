@@ -86,6 +86,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BU4-3I-Yyv" kind="presentation" identifier="showCategory" id="ld1-Dd-9m0"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="remindMeCell" id="5Fu-85-68B">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -193,6 +196,47 @@
                 </datePicker>
             </objects>
             <point key="canvasLocation" x="2989" y="-304"/>
+        </scene>
+        <!--Category-->
+        <scene sceneID="YBb-7i-EBC">
+            <objects>
+                <tableViewController id="IWs-u3-dE8" userLabel="Category" customClass="CategoryTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZGp-Jl-BaM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" textLabel="Ngb-pi-lY7" style="IBUITableViewCellStyleDefault" id="Mje-6R-b8C">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mje-6R-b8C" id="5Vs-yb-G4A">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ngb-pi-lY7">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IWs-u3-dE8" id="bIp-Ew-cQf"/>
+                            <outlet property="delegate" destination="IWs-u3-dE8" id="tnh-0d-Ks4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Category" id="isX-2l-gFk">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4Se-ff-VOp">
+                            <connections>
+                                <action selector="cancel:" destination="IWs-u3-dE8" id="G4q-Jz-W9C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXo-hk-3VR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4466" y="-304"/>
         </scene>
         <!--Complete TableView-->
         <scene sceneID="laC-Vl-lPq">
@@ -342,6 +386,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ye-OW-5hY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2177" y="-302"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="RCS-CG-bgw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BU4-3I-Yyv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UqZ-GP-ezh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IWs-u3-dE8" kind="relationship" relationship="rootViewController" id="c1W-RS-qd1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s4q-oV-Odi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3654" y="-304"/>
         </scene>
     </scenes>
 </document>

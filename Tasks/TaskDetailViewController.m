@@ -14,6 +14,7 @@
  */
 
 #import "TaskDetailViewController.h"
+#import "CategoryTableViewController.h"
 
 #define kDatePickerTag              99     // view tag identifiying the date picker view
 
@@ -34,7 +35,7 @@ static NSInteger kNumberOfStaticRowsInAlarmSection = 1;
 
 static NSInteger kNumberOfSections = 3;
 
-@interface TaskDetailViewController ()
+@interface TaskDetailViewController () <UnwindDelegate>
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
@@ -386,14 +387,26 @@ static NSInteger kNumberOfSections = 3;
     
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UINavigationController *nvc = (UINavigationController *)segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"showCategory"]) {
+        CategoryTableViewController *categoryController = (CategoryTableViewController*)nvc.topViewController;
+        categoryController.unwindDelegate = self;
+        
+    }
 }
-*/
+
+#pragma mark - UnwindDelegate
+
+-(void)unwind:(UIViewController*)controller {
+    if ([controller isKindOfClass:[CategoryTableViewController class]]) {
+        // retrieve return data from ctrl if necessary
+    }
+    [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 @end
