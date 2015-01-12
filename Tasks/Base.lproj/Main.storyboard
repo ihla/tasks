@@ -47,23 +47,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nameCell" id="c7X-td-Kfx">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nameCell" id="c7X-td-Kfx" customClass="TextFieldCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c7X-td-Kfx" id="aQ7-Gv-xdz">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cxi-oQ-p9y">
-                                            <rect key="frame" x="16" y="8" width="568" height="27"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Cxi-oQ-p9y" firstAttribute="leading" secondItem="aQ7-Gv-xdz" secondAttribute="leadingMargin" constant="8" id="HZ9-9V-uAz"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Cxi-oQ-p9y" secondAttribute="bottom" id="W6y-U3-qhS"/>
-                                        <constraint firstItem="Cxi-oQ-p9y" firstAttribute="top" secondItem="aQ7-Gv-xdz" secondAttribute="topMargin" id="gAS-6R-kLq"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Cxi-oQ-p9y" secondAttribute="trailing" constant="8" id="jcX-Xr-bbH"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="categoryCell" textLabel="jBH-dE-awK" detailTextLabel="UEX-qa-qax" style="IBUITableViewCellStyleValue1" id="jb3-M0-WtE">

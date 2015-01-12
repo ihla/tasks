@@ -15,6 +15,7 @@
 
 #import "TaskDetailViewController.h"
 #import "CategoryListController.h"
+#import "TextFieldCell.h"
 
 #define kDatePickerTag              99     // view tag identifiying the date picker view
 
@@ -49,6 +50,8 @@ static NSInteger kNumberOfSections = 3;
 @property (assign) NSInteger alarmSectionNumberOfRows;
 
 @property(nonatomic) NSDate *setDate;
+
+@property (weak, nonatomic) UITextField *textField;
 
 @end
 
@@ -101,6 +104,8 @@ static NSInteger kNumberOfSections = 3;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"TextFieldCell" bundle:nil] forCellReuseIdentifier:kNameCellID];
     
     self.alarmSectionNumberOfRows = kNumberOfStaticRowsInAlarmSection;
     
@@ -255,6 +260,12 @@ static NSInteger kNumberOfSections = 3;
     
     cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 
+    if ([cellID isEqualToString:kNameCellID])
+    {
+        TextFieldCell *nameCell = (TextFieldCell*)cell;
+        self.textField = nameCell.textField;
+    }
+    
     if ([cellID isEqualToString:kRemindMeCellID])
     {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
