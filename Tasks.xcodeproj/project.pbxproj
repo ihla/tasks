@@ -13,10 +13,15 @@
 		2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF741A62B41000C4D3C3 /* CategoryListController.m */; };
 		2024EF781A62CA9700C4D3C3 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */; };
 		2024EF7B1A62DBFF00C4D3C3 /* EditCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF7A1A62DBFF00C4D3C3 /* EditCategoryController.m */; };
-		2024EF811A62E2CA00C4D3C3 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF801A62E2CA00C4D3C3 /* ImageUtils.m */; };
+		2024EF811A62E2CA00C4D3C3 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF801A62E2CA00C4D3C3 /* ColorUtils.m */; };
 		2024EF841A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */; };
 		2024EF871A63ACC300C4D3C3 /* CategorySettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */; };
 		2024EF8A1A63B95200C4D3C3 /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF891A63B95200C4D3C3 /* UserSettings.m */; };
+		2024EF9E1A63CC1500C4D3C3 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF9D1A63CC1500C4D3C3 /* Task.m */; };
+		2024EFA11A63CC1600C4D3C3 /* TaskCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFA01A63CC1600C4D3C3 /* TaskCategory.m */; };
+		2024EFA71A63D75800C4D3C3 /* TaskCategory+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFA61A63D75800C4D3C3 /* TaskCategory+Create.m */; };
+		2024EFAA1A63DB4C00C4D3C3 /* Task+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFA91A63DB4C00C4D3C3 /* Task+Create.m */; };
+		2024EFAD1A63EDF300C4D3C3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFAC1A63EDF300C4D3C3 /* CoreDataTableViewController.m */; };
 		20CA618E1A61109B0078153D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA618D1A61109B0078153D /* main.m */; };
 		20CA61911A61109B0078153D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61901A61109B0078153D /* AppDelegate.m */; };
 		20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61921A61109B0078153D /* Tasks.xcdatamodeld */; };
@@ -54,14 +59,25 @@
 		2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		2024EF791A62DBFF00C4D3C3 /* EditCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCategoryController.h; sourceTree = "<group>"; };
 		2024EF7A1A62DBFF00C4D3C3 /* EditCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCategoryController.m; sourceTree = "<group>"; };
-		2024EF7F1A62E2CA00C4D3C3 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
-		2024EF801A62E2CA00C4D3C3 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
+		2024EF7F1A62E2CA00C4D3C3 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
+		2024EF801A62E2CA00C4D3C3 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		2024EF821A63A7EB00C4D3C3 /* BaseCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCategoryTableViewController.h; sourceTree = "<group>"; };
 		2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCategoryTableViewController.m; sourceTree = "<group>"; };
 		2024EF851A63ACC300C4D3C3 /* CategorySettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorySettingsController.h; sourceTree = "<group>"; };
 		2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorySettingsController.m; sourceTree = "<group>"; };
 		2024EF881A63B95200C4D3C3 /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
 		2024EF891A63B95200C4D3C3 /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
+		2024EF9C1A63CC1500C4D3C3 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		2024EF9D1A63CC1500C4D3C3 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		2024EF9F1A63CC1600C4D3C3 /* TaskCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCategory.h; sourceTree = "<group>"; };
+		2024EFA01A63CC1600C4D3C3 /* TaskCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCategory.m; sourceTree = "<group>"; };
+		2024EFA51A63D75800C4D3C3 /* TaskCategory+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TaskCategory+Create.h"; sourceTree = "<group>"; };
+		2024EFA61A63D75800C4D3C3 /* TaskCategory+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TaskCategory+Create.m"; sourceTree = "<group>"; };
+		2024EFA81A63DB4C00C4D3C3 /* Task+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+Create.h"; sourceTree = "<group>"; };
+		2024EFA91A63DB4C00C4D3C3 /* Task+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+Create.m"; sourceTree = "<group>"; };
+		2024EFAB1A63EDF300C4D3C3 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		2024EFAC1A63EDF300C4D3C3 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		2024EFAE1A640BE300C4D3C3 /* ColorNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorNames.h; sourceTree = "<group>"; };
 		20CA61881A61109B0078153D /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CA618C1A61109B0078153D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CA618D1A61109B0078153D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -98,6 +114,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2024EF911A63C98200C4D3C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2024EFA81A63DB4C00C4D3C3 /* Task+Create.h */,
+				2024EFA91A63DB4C00C4D3C3 /* Task+Create.m */,
+				2024EFA51A63D75800C4D3C3 /* TaskCategory+Create.h */,
+				2024EFA61A63D75800C4D3C3 /* TaskCategory+Create.m */,
+				2024EF9C1A63CC1500C4D3C3 /* Task.h */,
+				2024EF9D1A63CC1500C4D3C3 /* Task.m */,
+				2024EF9F1A63CC1600C4D3C3 /* TaskCategory.h */,
+				2024EFA01A63CC1600C4D3C3 /* TaskCategory.m */,
+				20CA61921A61109B0078153D /* Tasks.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2024EF921A63C9A300C4D3C3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2024EFAE1A640BE300C4D3C3 /* ColorNames.h */,
+				2024EF881A63B95200C4D3C3 /* UserSettings.h */,
+				2024EF891A63B95200C4D3C3 /* UserSettings.m */,
+				2024EF721A626A0100C4D3C3 /* Debuglog.h */,
+				2024EF7F1A62E2CA00C4D3C3 /* ColorUtils.h */,
+				2024EF801A62E2CA00C4D3C3 /* ColorUtils.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		2024EF931A63CA6800C4D3C3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2024EF651A61354C00C4D3C3 /* TaskCell.h */,
+				2024EF661A61354C00C4D3C3 /* TaskCell.m */,
+				20CA61B71A612CA50078153D /* TaskCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2024EF941A63CA9600C4D3C3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2024EFAB1A63EDF300C4D3C3 /* CoreDataTableViewController.h */,
+				2024EFAC1A63EDF300C4D3C3 /* CoreDataTableViewController.m */,
+				2024EF681A6138CA00C4D3C3 /* TasksTableViewController.h */,
+				2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */,
+				2024EF6B1A61614300C4D3C3 /* TaskDetailViewController.h */,
+				2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */,
+				2024EF821A63A7EB00C4D3C3 /* BaseCategoryTableViewController.h */,
+				2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */,
+				2024EF851A63ACC300C4D3C3 /* CategorySettingsController.h */,
+				2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */,
+				2024EF731A62B41000C4D3C3 /* CategoryListController.h */,
+				2024EF741A62B41000C4D3C3 /* CategoryListController.m */,
+				2024EF761A62CA9700C4D3C3 /* SettingsTableViewController.h */,
+				2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */,
+				2024EF791A62DBFF00C4D3C3 /* EditCategoryController.h */,
+				2024EF7A1A62DBFF00C4D3C3 /* EditCategoryController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		2024EF951A63CAB400C4D3C3 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				2024EF6E1A61629D00C4D3C3 /* UnwindDelegate.h */,
+				20CA618F1A61109B0078153D /* AppDelegate.h */,
+				20CA61901A61109B0078153D /* AppDelegate.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		20CA617F1A61109B0078153D = {
 			isa = PBXGroup;
 			children = (
@@ -121,35 +209,11 @@
 		20CA618A1A61109B0078153D /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				2024EF881A63B95200C4D3C3 /* UserSettings.h */,
-				2024EF891A63B95200C4D3C3 /* UserSettings.m */,
-				2024EF821A63A7EB00C4D3C3 /* BaseCategoryTableViewController.h */,
-				2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */,
-				2024EF721A626A0100C4D3C3 /* Debuglog.h */,
-				2024EF6E1A61629D00C4D3C3 /* UnwindDelegate.h */,
-				2024EF7F1A62E2CA00C4D3C3 /* ImageUtils.h */,
-				2024EF801A62E2CA00C4D3C3 /* ImageUtils.m */,
-				20CA618F1A61109B0078153D /* AppDelegate.h */,
-				20CA61901A61109B0078153D /* AppDelegate.m */,
-				2024EF681A6138CA00C4D3C3 /* TasksTableViewController.h */,
-				2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */,
-				2024EF651A61354C00C4D3C3 /* TaskCell.h */,
-				2024EF661A61354C00C4D3C3 /* TaskCell.m */,
-				20CA61B71A612CA50078153D /* TaskCell.xib */,
-				2024EF6B1A61614300C4D3C3 /* TaskDetailViewController.h */,
-				2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */,
-				2024EF851A63ACC300C4D3C3 /* CategorySettingsController.h */,
-				2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */,
-				2024EF731A62B41000C4D3C3 /* CategoryListController.h */,
-				2024EF741A62B41000C4D3C3 /* CategoryListController.m */,
-				2024EF761A62CA9700C4D3C3 /* SettingsTableViewController.h */,
-				2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */,
-				2024EF791A62DBFF00C4D3C3 /* EditCategoryController.h */,
-				2024EF7A1A62DBFF00C4D3C3 /* EditCategoryController.m */,
-				20CA619B1A61109B0078153D /* Main.storyboard */,
-				20CA619E1A61109B0078153D /* Images.xcassets */,
-				20CA61A01A61109B0078153D /* LaunchScreen.xib */,
-				20CA61921A61109B0078153D /* Tasks.xcdatamodeld */,
+				2024EF951A63CAB400C4D3C3 /* Delegates */,
+				2024EF931A63CA6800C4D3C3 /* Views */,
+				2024EF941A63CA9600C4D3C3 /* Controllers */,
+				2024EF911A63C98200C4D3C3 /* Model */,
+				2024EF921A63C9A300C4D3C3 /* Utils */,
 				20CA618B1A61109B0078153D /* Supporting Files */,
 			);
 			path = Tasks;
@@ -158,6 +222,9 @@
 		20CA618B1A61109B0078153D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				20CA619B1A61109B0078153D /* Main.storyboard */,
+				20CA619E1A61109B0078153D /* Images.xcassets */,
+				20CA61A01A61109B0078153D /* LaunchScreen.xib */,
 				20CA618C1A61109B0078153D /* Info.plist */,
 				20CA618D1A61109B0078153D /* main.m */,
 			);
@@ -334,12 +401,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2024EFA71A63D75800C4D3C3 /* TaskCategory+Create.m in Sources */,
+				2024EF9E1A63CC1500C4D3C3 /* Task.m in Sources */,
+				2024EFAD1A63EDF300C4D3C3 /* CoreDataTableViewController.m in Sources */,
 				2024EF781A62CA9700C4D3C3 /* SettingsTableViewController.m in Sources */,
 				2024EF871A63ACC300C4D3C3 /* CategorySettingsController.m in Sources */,
 				2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */,
 				2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */,
 				2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */,
-				2024EF811A62E2CA00C4D3C3 /* ImageUtils.m in Sources */,
+				2024EF811A62E2CA00C4D3C3 /* ColorUtils.m in Sources */,
+				2024EFA11A63CC1600C4D3C3 /* TaskCategory.m in Sources */,
+				2024EFAA1A63DB4C00C4D3C3 /* Task+Create.m in Sources */,
 				2024EF8A1A63B95200C4D3C3 /* UserSettings.m in Sources */,
 				2024EF7B1A62DBFF00C4D3C3 /* EditCategoryController.m in Sources */,
 				20CA61911A61109B0078153D /* AppDelegate.m in Sources */,

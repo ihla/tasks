@@ -7,7 +7,7 @@
 //
 
 #import "EditCategoryController.h"
-#import "ImageUtils.h"
+#import "ColorUtils.h"
 
 @interface EditCategoryController ()
 
@@ -28,7 +28,7 @@
 
 -(NSArray*)colorNames {
     if (!_colorNames) {
-        _colorNames = [[self colorNamesArray] copy];
+        _colorNames = [[ColorUtils colorNameArray] copy];
     }
     return _colorNames;
 }
@@ -95,7 +95,7 @@
     if ([cellID isEqualToString:colorCellID]) {
         NSString *colorName = self.colorNames[indexPath.row];
         UIColor *color = [self.colors objectForKey:colorName];
-        cell.imageView.image = [ImageUtils imageWithColor:color rect:CGRectMake(0, 0, 18, 18)];
+        cell.imageView.image = [ColorUtils imageWithColor:color rect:CGRectMake(0, 0, 18, 18)];
         cell.imageView.layer.cornerRadius = 9;
         cell.imageView.clipsToBounds = YES;
         cell.textLabel.text = colorName;
@@ -106,29 +106,8 @@
 
 #pragma mark - Helper Methods
 
--(NSArray*)colorNamesArray {
-    NSArray *names = @[
-                       @"Purple",
-                       @"Green",
-                       @"Blue",
-                       @"Yellow",
-                       @"Brown",
-                       @"Red",
-                       @"Orange"
-                       ];
-    return names;
-}
-
 -(NSDictionary*)colorsDictionary{
-    NSArray *uiColors = @[
-                          [UIColor purpleColor],
-                          [UIColor greenColor],
-                          [UIColor blueColor],
-                          [UIColor yellowColor],
-                          [UIColor brownColor],
-                          [UIColor redColor],
-                          [UIColor orangeColor]
-                          ];
+    NSArray *uiColors = [[ColorUtils uiColorArray] copy];
     NSDictionary *colors = [NSDictionary dictionaryWithObjects:uiColors forKeys:self.colorNames];
     return colors;
 }

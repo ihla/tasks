@@ -1,5 +1,5 @@
 //
-//  ImageUtils.h
+//  ColorUtils.h
 //  Tasks
 //
 //  Created by Lubos Ilcik on 1/11/15.
@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ColorNames.h"
 
-@interface ImageUtils : NSObject
+@interface ColorUtils : NSObject
 
++(NSArray*)colorNameArray;
++(NSArray*)uiColorArray;
++(UIImage *)imageWithColorName:(NSString *)name rect:(CGRect)rect;
 +(UIImage *)imageWithColor:(UIColor *)color rect:(CGRect)rect;
 
 @end

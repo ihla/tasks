@@ -7,40 +7,56 @@
 //
 
 #import "BaseCategoryTableViewController.h"
-#import "ImageUtils.h"
+#import "ColorUtils.h"
+#import "TaskCategory.h"
 
 @interface BaseCategoryTableViewController ()
+
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
 @implementation BaseCategoryTableViewController
 
+#pragma mark - Accessories
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TaskCategory"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)]];
+    
+    
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+#pragma mark - Life Cycle Methods
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [delegate managedObjectContext];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // TODO
-    return 5;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryCell" forIndexPath:indexPath];
 
-    [cell.textLabel setText:@"TODO"];
-    cell.imageView.image = [self imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 18, 18)];
+    TaskCategory *category = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    [cell.textLabel setText:category.name];
+    cell.imageView.image = [ColorUtils imageWithColorName:category.color rect:CGRectMake(0, 0, 18, 18)];
     cell.imageView.layer.cornerRadius = 9;
     cell.imageView.clipsToBounds = YES;
     
@@ -50,7 +66,7 @@
 #pragma mark - Utilities
 
 - (UIImage *)imageWithColor:(UIColor *)color rect:(CGRect)rect {
-    return [ImageUtils imageWithColor:color rect:rect];
+    return [ColorUtils imageWithColor:color rect:rect];
 }
 
 @end

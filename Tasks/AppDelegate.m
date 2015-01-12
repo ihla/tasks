@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "TaskCategory+Create.h"
+#import "ColorNames.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // set defaults
+    [TaskCategory categoryWithName:@"Chore" colorName:Purple inManagedObjectContext:self.managedObjectContext];
+    [TaskCategory categoryWithName:@"Study" colorName:Green inManagedObjectContext:self.managedObjectContext];
+    [TaskCategory categoryWithName:@"Work" colorName:Yellow inManagedObjectContext:self.managedObjectContext];
+    [TaskCategory categoryWithName:@"Misc" colorName:Brown inManagedObjectContext:self.managedObjectContext];
+    
     return YES;
 }
 
