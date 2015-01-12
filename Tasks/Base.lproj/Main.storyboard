@@ -200,7 +200,7 @@
         <!--Category-->
         <scene sceneID="YBb-7i-EBC">
             <objects>
-                <tableViewController id="IWs-u3-dE8" userLabel="Category" customClass="CategoryTableViewController" sceneMemberID="viewController">
+                <tableViewController id="IWs-u3-dE8" userLabel="Category" customClass="CategoryListController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZGp-Jl-BaM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -374,7 +374,7 @@
         <!--Categories-->
         <scene sceneID="kUi-kR-x0V">
             <objects>
-                <tableViewController id="Qph-9z-ADw" customClass="CategoryTableViewController" sceneMemberID="viewController">
+                <tableViewController id="Qph-9z-ADw" customClass="CategorySettingsController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="sV9-3v-HKB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -564,7 +564,7 @@
         <!--Category Detail-->
         <scene sceneID="NPF-Ph-EqO">
             <objects>
-                <tableViewController id="rpX-eR-RoJ" userLabel="Category Detail" customClass="AddCategoryTableViewController" sceneMemberID="viewController">
+                <tableViewController id="rpX-eR-RoJ" userLabel="Category Detail" customClass="EditCategoryController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="vhI-rJ-3D6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

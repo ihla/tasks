@@ -10,10 +10,12 @@
 		2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF661A61354C00C4D3C3 /* TaskCell.m */; };
 		2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */; };
 		2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */; };
-		2024EF751A62B41000C4D3C3 /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF741A62B41000C4D3C3 /* CategoryTableViewController.m */; };
+		2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF741A62B41000C4D3C3 /* CategoryListController.m */; };
 		2024EF781A62CA9700C4D3C3 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */; };
-		2024EF7B1A62DBFF00C4D3C3 /* AddCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF7A1A62DBFF00C4D3C3 /* AddCategoryTableViewController.m */; };
+		2024EF7B1A62DBFF00C4D3C3 /* EditCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF7A1A62DBFF00C4D3C3 /* EditCategoryController.m */; };
 		2024EF811A62E2CA00C4D3C3 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF801A62E2CA00C4D3C3 /* ImageUtils.m */; };
+		2024EF841A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */; };
+		2024EF871A63ACC300C4D3C3 /* CategorySettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */; };
 		20CA618E1A61109B0078153D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA618D1A61109B0078153D /* main.m */; };
 		20CA61911A61109B0078153D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61901A61109B0078153D /* AppDelegate.m */; };
 		20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61921A61109B0078153D /* Tasks.xcdatamodeld */; };
@@ -45,14 +47,18 @@
 		2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailViewController.m; sourceTree = "<group>"; };
 		2024EF6E1A61629D00C4D3C3 /* UnwindDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnwindDelegate.h; sourceTree = "<group>"; };
 		2024EF721A626A0100C4D3C3 /* Debuglog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debuglog.h; sourceTree = "<group>"; };
-		2024EF731A62B41000C4D3C3 /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewController.h; sourceTree = "<group>"; };
-		2024EF741A62B41000C4D3C3 /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewController.m; sourceTree = "<group>"; };
+		2024EF731A62B41000C4D3C3 /* CategoryListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListController.h; sourceTree = "<group>"; };
+		2024EF741A62B41000C4D3C3 /* CategoryListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListController.m; sourceTree = "<group>"; };
 		2024EF761A62CA9700C4D3C3 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
-		2024EF791A62DBFF00C4D3C3 /* AddCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCategoryTableViewController.h; sourceTree = "<group>"; };
-		2024EF7A1A62DBFF00C4D3C3 /* AddCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCategoryTableViewController.m; sourceTree = "<group>"; };
+		2024EF791A62DBFF00C4D3C3 /* EditCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCategoryController.h; sourceTree = "<group>"; };
+		2024EF7A1A62DBFF00C4D3C3 /* EditCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCategoryController.m; sourceTree = "<group>"; };
 		2024EF7F1A62E2CA00C4D3C3 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
 		2024EF801A62E2CA00C4D3C3 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
+		2024EF821A63A7EB00C4D3C3 /* BaseCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCategoryTableViewController.h; sourceTree = "<group>"; };
+		2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCategoryTableViewController.m; sourceTree = "<group>"; };
+		2024EF851A63ACC300C4D3C3 /* CategorySettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorySettingsController.h; sourceTree = "<group>"; };
+		2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorySettingsController.m; sourceTree = "<group>"; };
 		20CA61881A61109B0078153D /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CA618C1A61109B0078153D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CA618D1A61109B0078153D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 		20CA618A1A61109B0078153D /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				2024EF821A63A7EB00C4D3C3 /* BaseCategoryTableViewController.h */,
+				2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */,
 				2024EF721A626A0100C4D3C3 /* Debuglog.h */,
 				2024EF6E1A61629D00C4D3C3 /* UnwindDelegate.h */,
 				2024EF7F1A62E2CA00C4D3C3 /* ImageUtils.h */,
@@ -125,12 +133,14 @@
 				20CA61B71A612CA50078153D /* TaskCell.xib */,
 				2024EF6B1A61614300C4D3C3 /* TaskDetailViewController.h */,
 				2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */,
-				2024EF731A62B41000C4D3C3 /* CategoryTableViewController.h */,
-				2024EF741A62B41000C4D3C3 /* CategoryTableViewController.m */,
+				2024EF851A63ACC300C4D3C3 /* CategorySettingsController.h */,
+				2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */,
+				2024EF731A62B41000C4D3C3 /* CategoryListController.h */,
+				2024EF741A62B41000C4D3C3 /* CategoryListController.m */,
 				2024EF761A62CA9700C4D3C3 /* SettingsTableViewController.h */,
 				2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */,
-				2024EF791A62DBFF00C4D3C3 /* AddCategoryTableViewController.h */,
-				2024EF7A1A62DBFF00C4D3C3 /* AddCategoryTableViewController.m */,
+				2024EF791A62DBFF00C4D3C3 /* EditCategoryController.h */,
+				2024EF7A1A62DBFF00C4D3C3 /* EditCategoryController.m */,
 				20CA619B1A61109B0078153D /* Main.storyboard */,
 				20CA619E1A61109B0078153D /* Images.xcassets */,
 				20CA61A01A61109B0078153D /* LaunchScreen.xib */,
@@ -320,13 +330,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2024EF781A62CA9700C4D3C3 /* SettingsTableViewController.m in Sources */,
+				2024EF871A63ACC300C4D3C3 /* CategorySettingsController.m in Sources */,
 				2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */,
-				2024EF751A62B41000C4D3C3 /* CategoryTableViewController.m in Sources */,
+				2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */,
 				2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */,
 				2024EF811A62E2CA00C4D3C3 /* ImageUtils.m in Sources */,
-				2024EF7B1A62DBFF00C4D3C3 /* AddCategoryTableViewController.m in Sources */,
+				2024EF7B1A62DBFF00C4D3C3 /* EditCategoryController.m in Sources */,
 				20CA61911A61109B0078153D /* AppDelegate.m in Sources */,
 				2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */,
+				2024EF841A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m in Sources */,
 				20CA618E1A61109B0078153D /* main.m in Sources */,
 				20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */,
 			);

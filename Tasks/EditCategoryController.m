@@ -1,22 +1,22 @@
 //
-//  AddCategoryTableViewController.m
+//  EditCategoryController.m
 //  Tasks
 //
 //  Created by Lubos Ilcik on 1/11/15.
 //  Copyright (c) 2015 Lubos Ilcik. All rights reserved.
 //
 
-#import "AddCategoryTableViewController.h"
+#import "EditCategoryController.h"
 #import "ImageUtils.h"
 
-@interface AddCategoryTableViewController ()
+@interface EditCategoryController ()
 
 @property (nonatomic) NSDictionary *colors;
 @property (nonatomic) NSArray *colorNames;
 
 @end
 
-@implementation AddCategoryTableViewController
+@implementation EditCategoryController
 
 #pragma mark - IB Actions
 

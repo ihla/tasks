@@ -7,7 +7,7 @@
 //
 
 #import "SettingsTableViewController.h"
-#import "CategoryTableViewController.h"
+#import "CategoryListController.h"
 
 @interface SettingsTableViewController ()
 

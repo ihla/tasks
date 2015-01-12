@@ -14,7 +14,7 @@
  */
 
 #import "TaskDetailViewController.h"
-#import "CategoryTableViewController.h"
+#import "CategoryListController.h"
 
 #define kDatePickerTag              99     // view tag identifiying the date picker view
 
@@ -393,7 +393,7 @@ static NSInteger kNumberOfSections = 3;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *nvc = (UINavigationController *)segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"showCategory"]) {
-        CategoryTableViewController *categoryController = (CategoryTableViewController*)nvc.topViewController;
+        CategoryListController *categoryController = (CategoryListController*)nvc.topViewController;
         categoryController.unwindDelegate = self;
         
     }
@@ -402,7 +402,7 @@ static NSInteger kNumberOfSections = 3;
 #pragma mark - UnwindDelegate
 
 -(void)unwind:(UIViewController*)controller {
-    if ([controller isKindOfClass:[CategoryTableViewController class]]) {
+    if ([controller isKindOfClass:[CategoryListController class]]) {
         // retrieve return data from ctrl if necessary
     }
     [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
