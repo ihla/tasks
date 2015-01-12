@@ -366,6 +366,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="gsI-z2-cYv"/>
+                    <connections>
+                        <outlet property="notificationsSwitch" destination="k1E-zY-sQa" id="sxe-HJ-V7d"/>
+                        <outlet property="orderControl" destination="EDm-bk-EWc" id="dZU-iT-LSL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UFZ-yh-pJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

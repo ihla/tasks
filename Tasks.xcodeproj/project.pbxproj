@@ -16,6 +16,7 @@
 		2024EF811A62E2CA00C4D3C3 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF801A62E2CA00C4D3C3 /* ImageUtils.m */; };
 		2024EF841A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */; };
 		2024EF871A63ACC300C4D3C3 /* CategorySettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */; };
+		2024EF8A1A63B95200C4D3C3 /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF891A63B95200C4D3C3 /* UserSettings.m */; };
 		20CA618E1A61109B0078153D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA618D1A61109B0078153D /* main.m */; };
 		20CA61911A61109B0078153D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61901A61109B0078153D /* AppDelegate.m */; };
 		20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61921A61109B0078153D /* Tasks.xcdatamodeld */; };
@@ -59,6 +60,8 @@
 		2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCategoryTableViewController.m; sourceTree = "<group>"; };
 		2024EF851A63ACC300C4D3C3 /* CategorySettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorySettingsController.h; sourceTree = "<group>"; };
 		2024EF861A63ACC300C4D3C3 /* CategorySettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorySettingsController.m; sourceTree = "<group>"; };
+		2024EF881A63B95200C4D3C3 /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
+		2024EF891A63B95200C4D3C3 /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
 		20CA61881A61109B0078153D /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CA618C1A61109B0078153D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CA618D1A61109B0078153D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 		20CA618A1A61109B0078153D /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				2024EF881A63B95200C4D3C3 /* UserSettings.h */,
+				2024EF891A63B95200C4D3C3 /* UserSettings.m */,
 				2024EF821A63A7EB00C4D3C3 /* BaseCategoryTableViewController.h */,
 				2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */,
 				2024EF721A626A0100C4D3C3 /* Debuglog.h */,
@@ -335,6 +340,7 @@
 				2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */,
 				2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */,
 				2024EF811A62E2CA00C4D3C3 /* ImageUtils.m in Sources */,
+				2024EF8A1A63B95200C4D3C3 /* UserSettings.m in Sources */,
 				2024EF7B1A62DBFF00C4D3C3 /* EditCategoryController.m in Sources */,
 				20CA61911A61109B0078153D /* AppDelegate.m in Sources */,
 				2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */,

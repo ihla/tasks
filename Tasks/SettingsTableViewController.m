@@ -8,8 +8,12 @@
 
 #import "SettingsTableViewController.h"
 #import "CategoryListController.h"
+#import "UserSettings.h"
 
 @interface SettingsTableViewController ()
+
+@property (weak, nonatomic) IBOutlet UISwitch *notificationsSwitch;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *orderControl;
 
 @end
 
@@ -18,10 +22,22 @@
 #pragma mark - IB Actions
 
 - (IBAction)switchNotifications:(UISwitch *)sender {
+    if (sender.on) {
+        [UserSettings setNotificationsEnabled:YES];
+    } else {
+        [UserSettings setNotificationsEnabled:NO];
+    }
 }
 
 - (IBAction)setOrdering:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        [UserSettings setTasksOrder:ALPHABETICAL];
+    } else {
+        [UserSettings setTasksOrder:CHRONOLOGICAL];
+    }
 }
+
+#pragma mark - Lifecycle Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,8 +45,8 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.notificationsSwitch.on = [UserSettings notificationsEnabled];
+    self.orderControl.selectedSegmentIndex = [UserSettings tasksOrder] == ALPHABETICAL ? 0 : 1;
 }
 
 - (void)didReceiveMemoryWarning {
