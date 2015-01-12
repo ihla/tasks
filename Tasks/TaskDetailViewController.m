@@ -17,6 +17,7 @@
 #import "CategoryListController.h"
 #import "TextFieldCell.h"
 #import "TaskCategory+Retrieve.h"
+#import "Task+Create.h"
 
 #define kDatePickerTag              99     // view tag identifiying the date picker view
 
@@ -60,7 +61,14 @@ static NSInteger kNumberOfSections = 3;
 #pragma mark - IB Actions
 
 - (IBAction)done:(id)sender {
-    [self.unwindDelegate unwind:self];
+    if (self.textField && [self.textField.text length]) {
+        NSString *name = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        [Task taskWithName:name category:self.selectedCategory date:self.setDate inManagedObjectContext:self.managedObjectContext];
+        [self.unwindDelegate unwind:self];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name empty." message:@"Task must have a name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (IBAction)switchAlarm:(UISwitch*)sender {

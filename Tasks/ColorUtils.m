@@ -37,6 +37,14 @@
     return uiColors;
 }
 
++(NSDictionary*)colorsDictionary {
+    NSArray *uiColors = [[self uiColorArray] copy];
+    NSArray *names = [[self colorNameArray] copy];
+    NSDictionary *colors = [NSDictionary dictionaryWithObjects:uiColors forKeys:names];
+    return colors;
+}
+
+
 +(UIImage *)imageWithColorName:(NSString *)name rect:(CGRect)rect {
     if ([name isEqualToString:Purple]) {
         return [self imageWithColor:[UIColor purpleColor] rect:rect];

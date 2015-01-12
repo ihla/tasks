@@ -62,7 +62,7 @@ static NSString * const ColorCellID = @"categoryDetailColorCell";
 
 -(NSDictionary*)colors {
     if (!_colors) {
-        _colors = [[self colorsDictionary] copy];
+        _colors = [[ColorUtils colorsDictionary] copy];
     }
     return _colors;
 }
@@ -173,12 +173,6 @@ static NSString * const ColorCellID = @"categoryDetailColorCell";
 
 
 #pragma mark - Helper Methods
-
--(NSDictionary*)colorsDictionary{
-    NSArray *uiColors = [[ColorUtils uiColorArray] copy];
-    NSDictionary *colors = [NSDictionary dictionaryWithObjects:uiColors forKeys:self.colorNames];
-    return colors;
-}
 
 -(NSInteger)indexOfColor:(NSString*)name {
     for (int idx = 0; idx < self.colorNames.count; idx++) {

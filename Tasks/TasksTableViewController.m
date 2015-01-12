@@ -9,21 +9,70 @@
 #import "TasksTableViewController.h"
 #import "TaskCell.h"
 #import "TaskDetailViewController.h"
+#import "ColorUtils.h"
+#import "Task.h"
+#import "TaskCategory.h"
 
 static NSString * const CellIdentifier = @"TaskCell";
 
 @interface TasksTableViewController () <SWTableViewCellDelegate, UnwindDelegate>
 
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) NSDictionary *colors;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
 @end
 
 @implementation TasksTableViewController
+
+#pragma mark - Accessories
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)]];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+-(NSDictionary*)colors {
+    if (!_colors) {
+        _colors = [[ColorUtils colorsDictionary] copy];
+    }
+    return _colors;
+}
 
 #pragma mark - Life Cycle Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    id delegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [delegate managedObjectContext];
+
     [self.tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
     [self.tableView setRowHeight:68];
+    
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+
+    // if the local changes while in the background, we need to be notified so we can update the date
+    // format in the table view cells
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(localeChanged:)
+                                                 name:NSCurrentLocaleDidChangeNotification
+                                               object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,18 +80,27 @@ static NSString * const CellIdentifier = @"TaskCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSCurrentLocaleDidChangeNotification
+                                                  object:nil];
+}
+
 #pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TaskCell *cell = (TaskCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
     cell.leftUtilityButtons = [self leftButtons];
     cell.rightUtilityButtons = [self rightButtons];
     cell.delegate = self;
     
-    cell.name.text = @"Task";
-    cell.due.text = @"Today 12:00";
-    [cell.category setBackgroundColor:[UIColor blueColor]];
+    cell.name.text = task.name;
+    cell.due.text = [self.dateFormatter stringFromDate:task.due];
+    [cell.category setBackgroundColor:self.colors[task.category.color]];
     
     return cell;
 }
@@ -120,6 +178,18 @@ static NSString * const CellIdentifier = @"TaskCell";
     }
     [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 
+}
+
+#pragma mark - Locale
+
+/*! Responds to region format or locale changes.
+ */
+- (void)localeChanged:(NSNotification *)notif
+{
+    // the user changed the locale (region format) in Settings, so we are notified here to
+    // update the date format in the table view cells
+    //
+    [self.tableView reloadData];
 }
 
 @end

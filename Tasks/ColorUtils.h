@@ -13,6 +13,7 @@
 
 +(NSArray*)colorNameArray;
 +(NSArray*)uiColorArray;
++(NSDictionary*)colorsDictionary;
 +(UIImage *)imageWithColorName:(NSString *)name rect:(CGRect)rect;
 +(UIImage *)imageWithColor:(UIColor *)color rect:(CGRect)rect;
 
