@@ -393,6 +393,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="i51-Gt-1hd" kind="presentation" identifier="editCategory" id="pjY-p5-JUt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -403,7 +406,7 @@
                     <navigationItem key="navigationItem" title="Categories" id="W3H-Uo-Msq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3iS-kf-tSy">
                             <connections>
-                                <segue destination="i51-Gt-1hd" kind="presentation" identifier="showCategoryDetail" id="33W-ci-vkh"/>
+                                <segue destination="i51-Gt-1hd" kind="presentation" identifier="addCategory" id="33W-ci-vkh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -623,4 +626,7 @@
             <point key="canvasLocation" x="4385" y="1077"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="33W-ci-vkh"/>
+    </inferredMetricsTieBreakers>
 </document>

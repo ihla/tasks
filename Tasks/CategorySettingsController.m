@@ -7,8 +7,10 @@
 //
 
 #import "CategorySettingsController.h"
+#import "EditCategoryController.h"
+#import "Debuglog.h"
 
-@interface CategorySettingsController ()
+@interface CategorySettingsController () <UnwindDelegate>
 
 @end
 
@@ -31,14 +33,26 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UINavigationController *nvc = (UINavigationController *)segue.destinationViewController;
+    EditCategoryController *categoryController = (EditCategoryController*)nvc.topViewController;
+    categoryController.unwindDelegate = self;
+    if ([segue.identifier isEqualToString:@"editCategory"]) {
+        DBLog(@"TODO: pass category obj");
+    } else if ([segue.identifier isEqualToString:@"addCategory"]) {
+        DBLog(@"TODO: create category obj");
+    }
 }
-*/
+
+#pragma mark - UnwindDelegate
+
+-(void)unwind:(UIViewController*)controller {
+    if ([controller isKindOfClass:[EditCategoryController class]]) {
+        // retrieve return data from ctrl if necessary
+    }
+    [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
