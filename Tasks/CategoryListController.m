@@ -25,12 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 #pragma mark - UITableViewDelegate
@@ -39,7 +33,9 @@
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedCategory = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    [self.unwindDelegate unwind:self];
 }
 
 @end

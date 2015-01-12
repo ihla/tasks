@@ -8,6 +8,10 @@
 
 #import "CoreDataTableViewController.h"
 
+@class TaskCategory;
+
 @interface BaseCategoryTableViewController : CoreDataTableViewController
+
+@property (nonatomic) TaskCategory *selectedCategory;
 
 @end

@@ -16,6 +16,7 @@
 #import "TaskDetailViewController.h"
 #import "CategoryListController.h"
 #import "TextFieldCell.h"
+#import "TaskCategory+Retrieve.h"
 
 #define kDatePickerTag              99     // view tag identifiying the date picker view
 
@@ -23,9 +24,11 @@ static NSString *kNameCellID = @"nameCell";
 static NSString *kRemindMeCellID = @"remindMeCell";
 static NSString *kDateCellID = @"dateCell";
 static NSString *kDatePickerID = @"datePicker";
-static NSString *kCategoryCell = @"categoryCell";
+static NSString *kCategoryCellID = @"categoryCell";
 
 // table view sections and rows (why not make it as static cells instead???)
+static NSInteger kCategorySection = 1;
+static NSInteger kCategoryRow = 0;
 static NSInteger kAlarmSection = 2;
 static NSInteger kRemindMeRow = 0;
 static NSInteger kDateRow = 1; // inserted/deleted depending on the switch in remind me row
@@ -39,19 +42,16 @@ static NSInteger kNumberOfSections = 3;
 @interface TaskDetailViewController () <UnwindDelegate>
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
-
 // keep track which indexPath points to the cell with UIDatePicker
 @property (nonatomic, strong) NSIndexPath *datePickerIndexPath;
-
 @property (assign) NSInteger pickerCellRowHeight;
-
 @property (nonatomic, strong) IBOutlet UIDatePicker *pickerView;
-
 @property (assign) NSInteger alarmSectionNumberOfRows;
-
 @property(nonatomic) NSDate *setDate;
-
 @property (weak, nonatomic) UITextField *textField;
+@property (nonatomic) TaskCategory *selectedCategory;
+@property (nonatomic) NSIndexPath *categoryIndexPath;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -105,7 +105,13 @@ static NSInteger kNumberOfSections = 3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    id delegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [delegate managedObjectContext];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"TextFieldCell" bundle:nil] forCellReuseIdentifier:kNameCellID];
+    
+    self.categoryIndexPath = [NSIndexPath indexPathForRow:kCategoryRow inSection:kCategorySection];
+    self.selectedCategory = [TaskCategory retrieveCategoryWithName:@"Chore" inManagedObjectContext:self.managedObjectContext];
     
     self.alarmSectionNumberOfRows = kNumberOfStaticRowsInAlarmSection;
     
@@ -245,7 +251,7 @@ static NSInteger kNumberOfSections = 3;
             cellID = kNameCellID;
             break;
         case 1:
-            cellID = kCategoryCell;
+            cellID = kCategoryCellID;
             break;
         case 2:
             if (indexPath.row == kRemindMeRow) {
@@ -264,6 +270,10 @@ static NSInteger kNumberOfSections = 3;
     {
         TextFieldCell *nameCell = (TextFieldCell*)cell;
         self.textField = nameCell.textField;
+    }
+    
+    if ([cellID isEqualToString:kCategoryCellID]) {
+        [cell.detailTextLabel setText:[self.selectedCategory name]];
     }
     
     if ([cellID isEqualToString:kRemindMeCellID])
@@ -406,6 +416,7 @@ static NSInteger kNumberOfSections = 3;
     if ([segue.identifier isEqualToString:@"showCategory"]) {
         CategoryListController *categoryController = (CategoryListController*)nvc.topViewController;
         categoryController.unwindDelegate = self;
+        categoryController.selectedCategory = self.selectedCategory;
         
     }
 }
@@ -414,7 +425,8 @@ static NSInteger kNumberOfSections = 3;
 
 -(void)unwind:(UIViewController*)controller {
     if ([controller isKindOfClass:[CategoryListController class]]) {
-        // retrieve return data from ctrl if necessary
+        self.selectedCategory = ((CategoryListController*)controller).selectedCategory;
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:self.categoryIndexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
     [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     

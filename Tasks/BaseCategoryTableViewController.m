@@ -56,6 +56,9 @@
     cell.imageView.image = [ColorUtils imageWithColorName:category.color rect:CGRectMake(0, 0, 18, 18)];
     cell.imageView.layer.cornerRadius = 9;
     cell.imageView.clipsToBounds = YES;
+    if ([category.name isEqualToString:[self.selectedCategory name]]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     
     return cell;
 }
