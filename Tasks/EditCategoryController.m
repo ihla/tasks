@@ -11,6 +11,7 @@
 #import "TextFieldCell.h"
 #import "TaskCategory+Retrieve.h"
 #import "TaskCategory+Create.h"
+#import "TaskCategory+Update.h"
 
 static NSString * const NameCellID = @"categoryDetailNameCell";
 static NSString * const ColorCellID = @"categoryDetailColorCell";
@@ -32,13 +33,16 @@ static NSString * const ColorCellID = @"categoryDetailColorCell";
 - (IBAction)done:(id)sender {
     if (self.textField && [self.textField.text length]) {
         NSString *name = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
-        if ([TaskCategory retrieveCategoryWithName:name inManagedObjectContext:self.managedObjectContext]) {
+        NSString *color = self.colorNames[self.selectedIndexPath.row];
+        if (self.category) {
+            [self.category updateWithName:name color:color];
+            [self.unwindDelegate unwind:self];
+        } else if ([TaskCategory retrieveCategoryWithName:name inManagedObjectContext:self.managedObjectContext]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"A category with the given name already exists." message:@"Category must have a unique name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         } else {
-            // everything ok, create new category
-            [TaskCategory categoryWithName:name colorName:self.colorNames[self.selectedIndexPath.row] inManagedObjectContext:self.managedObjectContext];
+            // create new category
+            [TaskCategory categoryWithName:name colorName:color inManagedObjectContext:self.managedObjectContext];
             [self.unwindDelegate unwind:self];
         }
     } else {
@@ -78,6 +82,9 @@ static NSString * const ColorCellID = @"categoryDetailColorCell";
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    if (self.category) {
+        self.selectedIndexPath = [NSIndexPath indexPathForRow:[self indexOfColor:self.category.color] inSection:1];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,6 +130,9 @@ static NSString * const ColorCellID = @"categoryDetailColorCell";
     if ([cellID isEqualToString:NameCellID]) {
         TextFieldCell *c = (TextFieldCell*)cell;
         self.textField = c.textField;
+        if (self.category) {
+            [c.textField setText:self.category.name];
+        }
     }
     if ([cellID isEqualToString:ColorCellID]) {
         NSString *colorName = self.colorNames[indexPath.row];
@@ -168,6 +178,16 @@ static NSString * const ColorCellID = @"categoryDetailColorCell";
     NSArray *uiColors = [[ColorUtils uiColorArray] copy];
     NSDictionary *colors = [NSDictionary dictionaryWithObjects:uiColors forKeys:self.colorNames];
     return colors;
+}
+
+-(NSInteger)indexOfColor:(NSString*)name {
+    for (int idx = 0; idx < self.colorNames.count; idx++) {
+        NSString *color = self.colorNames[idx];
+        if ([color isEqualToString:name]) {
+            return idx;
+        }
+    }
+    return -1;
 }
 
 @end

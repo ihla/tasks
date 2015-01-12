@@ -8,6 +8,7 @@
 
 #import "CategorySettingsController.h"
 #import "EditCategoryController.h"
+#import "TaskCategory.h"
 #import "Debuglog.h"
 
 @interface CategorySettingsController () <UnwindDelegate>
@@ -37,12 +38,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *nvc = (UINavigationController *)segue.destinationViewController;
-    EditCategoryController *categoryController = (EditCategoryController*)nvc.topViewController;
-    categoryController.unwindDelegate = self;
+    EditCategoryController *editCategoryController = (EditCategoryController*)nvc.topViewController;
+    editCategoryController.unwindDelegate = self;
     if ([segue.identifier isEqualToString:@"editCategory"]) {
-        DBLog(@"TODO: pass category obj");
-    } else if ([segue.identifier isEqualToString:@"addCategory"]) {
-        DBLog(@"TODO: create category obj");
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        TaskCategory *category = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        editCategoryController.category = category;
+    } else {
+        // create new category
+        editCategoryController.category = nil;
     }
 }
 
