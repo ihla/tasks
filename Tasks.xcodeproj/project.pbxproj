@@ -22,6 +22,9 @@
 		2024EFA71A63D75800C4D3C3 /* TaskCategory+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFA61A63D75800C4D3C3 /* TaskCategory+Create.m */; };
 		2024EFAA1A63DB4C00C4D3C3 /* Task+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFA91A63DB4C00C4D3C3 /* Task+Create.m */; };
 		2024EFAD1A63EDF300C4D3C3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFAC1A63EDF300C4D3C3 /* CoreDataTableViewController.m */; };
+		2024EFB01A6415B100C4D3C3 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2024EFAF1A6415B100C4D3C3 /* TextFieldCell.xib */; };
+		2024EFB31A64164100C4D3C3 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFB21A64164100C4D3C3 /* TextFieldCell.m */; };
+		2024EFB61A641F6800C4D3C3 /* TaskCategory+Retrieve.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFB51A641F6800C4D3C3 /* TaskCategory+Retrieve.m */; };
 		20CA618E1A61109B0078153D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA618D1A61109B0078153D /* main.m */; };
 		20CA61911A61109B0078153D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61901A61109B0078153D /* AppDelegate.m */; };
 		20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61921A61109B0078153D /* Tasks.xcdatamodeld */; };
@@ -78,6 +81,11 @@
 		2024EFAB1A63EDF300C4D3C3 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		2024EFAC1A63EDF300C4D3C3 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		2024EFAE1A640BE300C4D3C3 /* ColorNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorNames.h; sourceTree = "<group>"; };
+		2024EFAF1A6415B100C4D3C3 /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		2024EFB11A64164100C4D3C3 /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
+		2024EFB21A64164100C4D3C3 /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
+		2024EFB41A641F6800C4D3C3 /* TaskCategory+Retrieve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TaskCategory+Retrieve.h"; sourceTree = "<group>"; };
+		2024EFB51A641F6800C4D3C3 /* TaskCategory+Retrieve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TaskCategory+Retrieve.m"; sourceTree = "<group>"; };
 		20CA61881A61109B0078153D /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CA618C1A61109B0078153D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CA618D1A61109B0078153D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -121,6 +129,8 @@
 				2024EFA91A63DB4C00C4D3C3 /* Task+Create.m */,
 				2024EFA51A63D75800C4D3C3 /* TaskCategory+Create.h */,
 				2024EFA61A63D75800C4D3C3 /* TaskCategory+Create.m */,
+				2024EFB41A641F6800C4D3C3 /* TaskCategory+Retrieve.h */,
+				2024EFB51A641F6800C4D3C3 /* TaskCategory+Retrieve.m */,
 				2024EF9C1A63CC1500C4D3C3 /* Task.h */,
 				2024EF9D1A63CC1500C4D3C3 /* Task.m */,
 				2024EF9F1A63CC1600C4D3C3 /* TaskCategory.h */,
@@ -149,6 +159,9 @@
 				2024EF651A61354C00C4D3C3 /* TaskCell.h */,
 				2024EF661A61354C00C4D3C3 /* TaskCell.m */,
 				20CA61B71A612CA50078153D /* TaskCell.xib */,
+				2024EFAF1A6415B100C4D3C3 /* TextFieldCell.xib */,
+				2024EFB11A64164100C4D3C3 /* TextFieldCell.h */,
+				2024EFB21A64164100C4D3C3 /* TextFieldCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -349,6 +362,7 @@
 			files = (
 				20CA61B81A612CA50078153D /* TaskCell.xib in Resources */,
 				20CA619D1A61109B0078153D /* Main.storyboard in Resources */,
+				2024EFB01A6415B100C4D3C3 /* TextFieldCell.xib in Resources */,
 				20CA61A21A61109B0078153D /* LaunchScreen.xib in Resources */,
 				20CA619F1A61109B0078153D /* Images.xcassets in Resources */,
 			);
@@ -405,6 +419,7 @@
 				2024EF9E1A63CC1500C4D3C3 /* Task.m in Sources */,
 				2024EFAD1A63EDF300C4D3C3 /* CoreDataTableViewController.m in Sources */,
 				2024EF781A62CA9700C4D3C3 /* SettingsTableViewController.m in Sources */,
+				2024EFB31A64164100C4D3C3 /* TextFieldCell.m in Sources */,
 				2024EF871A63ACC300C4D3C3 /* CategorySettingsController.m in Sources */,
 				2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */,
 				2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */,
@@ -416,6 +431,7 @@
 				2024EF7B1A62DBFF00C4D3C3 /* EditCategoryController.m in Sources */,
 				20CA61911A61109B0078153D /* AppDelegate.m in Sources */,
 				2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */,
+				2024EFB61A641F6800C4D3C3 /* TaskCategory+Retrieve.m in Sources */,
 				2024EF841A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m in Sources */,
 				20CA618E1A61109B0078153D /* main.m in Sources */,
 				20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */,

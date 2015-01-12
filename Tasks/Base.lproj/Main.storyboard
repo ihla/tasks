@@ -568,31 +568,19 @@
             </objects>
             <point key="canvasLocation" x="3670" y="1080"/>
         </scene>
-        <!--Category Detail-->
+        <!--Edit Category-->
         <scene sceneID="NPF-Ph-EqO">
             <objects>
-                <tableViewController id="rpX-eR-RoJ" userLabel="Category Detail" customClass="EditCategoryController" sceneMemberID="viewController">
+                <tableViewController id="rpX-eR-RoJ" userLabel="Edit Category" customClass="EditCategoryController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="vhI-rJ-3D6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryDetailNameCell" id="zgG-On-cnE">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryDetailNameCell" id="zgG-On-cnE" customClass="TextFieldCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zgG-On-cnE" id="xL7-s0-8gD">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k3M-MU-Phr">
-                                            <rect key="frame" x="16" y="11" width="584" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="k3M-MU-Phr" firstAttribute="trailing" secondItem="xL7-s0-8gD" secondAttribute="trailingMargin" constant="8" id="L7W-jB-dh9"/>
-                                        <constraint firstAttribute="centerY" secondItem="k3M-MU-Phr" secondAttribute="centerY" id="UHE-0v-eK9"/>
-                                        <constraint firstItem="k3M-MU-Phr" firstAttribute="leading" secondItem="xL7-s0-8gD" secondAttribute="leadingMargin" constant="8" id="eYw-6g-QEm"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryDetailColorCell" textLabel="W1M-1y-Y6c" style="IBUITableViewCellStyleDefault" id="EbL-oM-5CP">

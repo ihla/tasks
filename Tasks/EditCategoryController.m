@@ -8,11 +8,20 @@
 
 #import "EditCategoryController.h"
 #import "ColorUtils.h"
+#import "TextFieldCell.h"
+#import "TaskCategory+Retrieve.h"
+#import "TaskCategory+Create.h"
+
+static NSString * const NameCellID = @"categoryDetailNameCell";
+static NSString * const ColorCellID = @"categoryDetailColorCell";
 
 @interface EditCategoryController ()
 
 @property (nonatomic) NSDictionary *colors;
 @property (nonatomic) NSArray *colorNames;
+@property (nonatomic) NSIndexPath *selectedIndexPath;
+@property (weak, nonatomic) UITextField *textField;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -21,7 +30,21 @@
 #pragma mark - IB Actions
 
 - (IBAction)done:(id)sender {
-    [self.unwindDelegate unwind:self];
+    if (self.textField && [self.textField.text length]) {
+        NSString *name = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+        if ([TaskCategory retrieveCategoryWithName:name inManagedObjectContext:self.managedObjectContext]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"A category with the given name already exists." message:@"Category must have a unique name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        } else {
+            // everything ok, create new category
+            [TaskCategory categoryWithName:name colorName:self.colorNames[self.selectedIndexPath.row] inManagedObjectContext:self.managedObjectContext];
+            [self.unwindDelegate unwind:self];
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name empty." message:@"Category must have a name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - Accessors
@@ -44,6 +67,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"TextFieldCell" bundle:nil] forCellReuseIdentifier:NameCellID];
+    
+    self.selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+
+    id delegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [delegate managedObjectContext];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -80,29 +110,57 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *nameCellID = @"categoryDetailNameCell";
-    NSString *colorCellID = @"categoryDetailColorCell";
     
     UITableViewCell *cell = nil;
     NSString *cellID = nil;
     if (indexPath.section == 0) {
-        cellID = nameCellID;
+        cellID = NameCellID;
     } else if (indexPath.section == 1) {
-        cellID = colorCellID;
+        cellID = ColorCellID;
     }
     
     cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    if ([cellID isEqualToString:colorCellID]) {
+    if ([cellID isEqualToString:NameCellID]) {
+        TextFieldCell *c = (TextFieldCell*)cell;
+        self.textField = c.textField;
+    }
+    if ([cellID isEqualToString:ColorCellID]) {
         NSString *colorName = self.colorNames[indexPath.row];
         UIColor *color = [self.colors objectForKey:colorName];
         cell.imageView.image = [ColorUtils imageWithColor:color rect:CGRectMake(0, 0, 18, 18)];
         cell.imageView.layer.cornerRadius = 9;
         cell.imageView.clipsToBounds = YES;
         cell.textLabel.text = colorName;
+        if ([self.selectedIndexPath isEqual:indexPath]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
     }
     
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // return nil for not selectable cells
+    if (indexPath.section == 1) {
+        return indexPath;
+    }
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    cell = [self.tableView cellForRowAtIndexPath:self.selectedIndexPath];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    self.selectedIndexPath = indexPath;
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 #pragma mark - Helper Methods
 

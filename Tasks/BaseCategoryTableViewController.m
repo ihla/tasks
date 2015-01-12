@@ -30,8 +30,6 @@
                                                               ascending:YES
                                                                selector:@selector(localizedStandardCompare:)]];
     
-    
-    
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:managedObjectContext
                                                                           sectionNameKeyPath:nil
@@ -39,7 +37,6 @@
 }
 
 #pragma mark - Life Cycle Methods
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

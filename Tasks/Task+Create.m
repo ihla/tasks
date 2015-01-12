@@ -37,6 +37,13 @@
                 task.notificationEnabled = [NSNumber numberWithBool:NO];
             }
             task.complete = [NSNumber numberWithBool:NO];
+
+            NSError *error = nil;
+            if (![context save:&error]){
+                //we have an error!
+                NSLog(@"%@", error);
+            }
+
         } else {
             task = [matches lastObject];
         }
