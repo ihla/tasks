@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Lubos Ilcik. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
 
-@interface TasksTableViewController : UITableViewController
+@interface TasksTableViewController : CoreDataTableViewController
 
 @end
