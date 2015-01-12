@@ -7,8 +7,10 @@
 //
 
 #import "CategoryTableViewController.h"
+#import "ImageUtils.h"
+#import "AddCategoryTableViewController.h"
 
-@interface CategoryTableViewController ()
+@interface CategoryTableViewController ()  <UnwindDelegate>
 
 @end
 
@@ -70,28 +72,29 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UINavigationController *nvc = (UINavigationController *)segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"showCategoryDetail"]) {
+        AddCategoryTableViewController *categoryController = (AddCategoryTableViewController*)nvc.topViewController;
+        categoryController.unwindDelegate = self;
+    }
 }
-*/
+
+#pragma mark - UnwindDelegate
+
+-(void)unwind:(UIViewController*)controller {
+    if ([controller isKindOfClass:[AddCategoryTableViewController class]]) {
+        // retrieve return data from ctrl if necessary
+    }
+    [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Utilities
 
 - (UIImage *)imageWithColor:(UIColor *)color rect:(CGRect)rect {
-//    CGRect rect = CGRectMake(0, 0, 1, 1);
-    // Create a 1 by 1 pixel context
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
-    [color setFill];
-    UIRectFill(rect);   // Fill it with your color
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
+    return [ImageUtils imageWithColor:color rect:rect];
 }
 
 @end
