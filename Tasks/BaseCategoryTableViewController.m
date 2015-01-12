@@ -63,10 +63,4 @@
     return cell;
 }
 
-#pragma mark - Utilities
-
-- (UIImage *)imageWithColor:(UIColor *)color rect:(CGRect)rect {
-    return [ColorUtils imageWithColor:color rect:rect];
-}
-
 @end
