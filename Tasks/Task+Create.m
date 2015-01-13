@@ -17,33 +17,23 @@
 + (Task *) taskWithName:(NSString *)name category:(TaskCategory *)category date:(NSDate *)date inManagedObjectContext:(NSManagedObjectContext *)context {
     Task *task = nil;
     
+    // name & category are mandatory
     if ([name length] && category) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-        request.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
-        
-        NSError *error;
-        NSArray *matches = [context executeFetchRequest:request error:&error];
-        
-        if (!matches) {
-            //TODO handle error
+        task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:context];
+        task.name = name;
+        task.category = category;
+        task.due = date;
+        if (date) {
+            task.notificationEnabled = [NSNumber numberWithBool:YES];
         } else {
-            task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:context];
-            task.name = name;
-            task.category = category;
-            task.due = date;
-            if (date) {
-                task.notificationEnabled = [NSNumber numberWithBool:YES];
-            } else {
-                task.notificationEnabled = [NSNumber numberWithBool:NO];
-            }
-            task.complete = [NSNumber numberWithBool:NO];
-
-            NSError *error = nil;
-            if (![context save:&error]){
-                //we have an error!
-                NSLog(@"%@", error);
-            }
-
+            task.notificationEnabled = [NSNumber numberWithBool:NO];
+        }
+        task.complete = [NSNumber numberWithBool:NO];
+        
+        NSError *error = nil;
+        if (![context save:&error]){
+            //we have an error!
+            NSLog(@"%@", error);
         }
     }
     
