@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF661A61354C00C4D3C3 /* TaskCell.m */; };
 		2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */; };
-		2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */; };
+		2024EF6D1A61614300C4D3C3 /* EditTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF6C1A61614300C4D3C3 /* EditTaskController.m */; };
 		2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF741A62B41000C4D3C3 /* CategoryListController.m */; };
 		2024EF781A62CA9700C4D3C3 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF771A62CA9700C4D3C3 /* SettingsTableViewController.m */; };
 		2024EF7B1A62DBFF00C4D3C3 /* EditCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EF7A1A62DBFF00C4D3C3 /* EditCategoryController.m */; };
@@ -56,8 +56,8 @@
 		2024EF661A61354C00C4D3C3 /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		2024EF681A6138CA00C4D3C3 /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
 		2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
-		2024EF6B1A61614300C4D3C3 /* TaskDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailViewController.h; sourceTree = "<group>"; };
-		2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailViewController.m; sourceTree = "<group>"; };
+		2024EF6B1A61614300C4D3C3 /* EditTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskController.h; sourceTree = "<group>"; };
+		2024EF6C1A61614300C4D3C3 /* EditTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskController.m; sourceTree = "<group>"; };
 		2024EF6E1A61629D00C4D3C3 /* UnwindDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnwindDelegate.h; sourceTree = "<group>"; };
 		2024EF721A626A0100C4D3C3 /* Debuglog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debuglog.h; sourceTree = "<group>"; };
 		2024EF731A62B41000C4D3C3 /* CategoryListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListController.h; sourceTree = "<group>"; };
@@ -193,8 +193,8 @@
 				2024EF691A6138CA00C4D3C3 /* TasksTableViewController.m */,
 				2024EFBA1A650A3900C4D3C3 /* CompleteTasksTableViewController.h */,
 				2024EFBB1A650A3900C4D3C3 /* CompleteTasksTableViewController.m */,
-				2024EF6B1A61614300C4D3C3 /* TaskDetailViewController.h */,
-				2024EF6C1A61614300C4D3C3 /* TaskDetailViewController.m */,
+				2024EF6B1A61614300C4D3C3 /* EditTaskController.h */,
+				2024EF6C1A61614300C4D3C3 /* EditTaskController.m */,
 				2024EF821A63A7EB00C4D3C3 /* BaseCategoryTableViewController.h */,
 				2024EF831A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m */,
 				2024EF851A63ACC300C4D3C3 /* CategorySettingsController.h */,
@@ -445,7 +445,7 @@
 				2024EF871A63ACC300C4D3C3 /* CategorySettingsController.m in Sources */,
 				2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */,
 				2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */,
-				2024EF6D1A61614300C4D3C3 /* TaskDetailViewController.m in Sources */,
+				2024EF6D1A61614300C4D3C3 /* EditTaskController.m in Sources */,
 				2024EF811A62E2CA00C4D3C3 /* ColorUtils.m in Sources */,
 				2024EFA11A63CC1600C4D3C3 /* TaskCategory.m in Sources */,
 				2024EFAA1A63DB4C00C4D3C3 /* Task+Create.m in Sources */,

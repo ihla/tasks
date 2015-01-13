@@ -1,5 +1,5 @@
 //
-//  TaskDetailViewController.m
+//  EditTaskController.m
 //  Tasks
 //
 //  Created by Lubos Ilcik on 1/10/15.
@@ -13,7 +13,7 @@
  *          The code is a work in progress and needs further refactoring to clean it.
  */
 
-#import "TaskDetailViewController.h"
+#import "EditTaskController.h"
 #import "CategoryListController.h"
 #import "TextFieldCell.h"
 #import "TaskCategory+Retrieve.h"
@@ -40,7 +40,7 @@ static NSInteger kNumberOfStaticRowsInAlarmSection = 1;
 
 static NSInteger kNumberOfSections = 3;
 
-@interface TaskDetailViewController () <UnwindDelegate>
+@interface EditTaskController () <UnwindDelegate>
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 // keep track which indexPath points to the cell with UIDatePicker
@@ -53,17 +53,19 @@ static NSInteger kNumberOfSections = 3;
 @property (nonatomic) TaskCategory *selectedCategory;
 @property (nonatomic) NSIndexPath *categoryIndexPath;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (assign) BOOL alarmOn;
 
 @end
 
-@implementation TaskDetailViewController
+@implementation EditTaskController
 
 #pragma mark - IB Actions
 
 - (IBAction)done:(id)sender {
     if (self.textField && [self.textField.text length]) {
         NSString *name = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        [Task taskWithName:name category:self.selectedCategory date:self.setDate inManagedObjectContext:self.managedObjectContext];
+        NSDate *date = self.alarmOn == YES ? self.setDate : nil;
+        [Task taskWithName:name category:self.selectedCategory date:date inManagedObjectContext:self.managedObjectContext];
         [self.unwindDelegate unwind:self];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name empty." message:@"Task must have a name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -73,8 +75,10 @@ static NSInteger kNumberOfSections = 3;
 
 - (IBAction)switchAlarm:(UISwitch*)sender {
     if (sender.on) {
+        self.alarmOn = YES;
         [self insertAlarmRow];
     } else {
+        self.alarmOn = NO;
         [self deleteAlarmRows];
     }
 }
@@ -276,6 +280,7 @@ static NSInteger kNumberOfSections = 3;
 
     if ([cellID isEqualToString:kNameCellID])
     {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         TextFieldCell *nameCell = (TextFieldCell*)cell;
         self.textField = nameCell.textField;
     }

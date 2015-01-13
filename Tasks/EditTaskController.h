@@ -1,5 +1,5 @@
 //
-//  TaskDetailViewController.h
+//  EditTaskController.h
 //  Tasks
 //
 //  Created by Lubos Ilcik on 1/10/15.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UnwindDelegate.h"
 
-@interface TaskDetailViewController : UITableViewController
+@interface EditTaskController : UITableViewController
 
 @property (nonatomic, weak) id<UnwindDelegate> unwindDelegate;
 

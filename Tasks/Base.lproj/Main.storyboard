@@ -41,7 +41,7 @@
         <!--Task-->
         <scene sceneID="fw3-qM-3vg">
             <objects>
-                <tableViewController id="vfe-he-MTw" customClass="TaskDetailViewController" sceneMemberID="viewController">
+                <tableViewController id="vfe-he-MTw" customClass="EditTaskController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="qdg-yn-3Ct">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,7 +92,7 @@
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="leg-xs-GzS">
                                             <rect key="frame" x="535" y="6" width="51" height="31"/>
                                             <connections>
-                                                <action selector="switchAlarm:" destination="vfe-he-MTw" eventType="valueChanged" id="ErM-AO-LUN"/>
+                                                <action selector="switchAlarm:" destination="vfe-he-MTw" eventType="valueChanged" id="wdA-se-le4"/>
                                             </connections>
                                         </switch>
                                     </subviews>

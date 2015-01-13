@@ -8,7 +8,7 @@
 
 #import "TasksTableViewController.h"
 #import "TaskCell.h"
-#import "TaskDetailViewController.h"
+#import "EditTaskController.h"
 #import "ColorUtils.h"
 #import "UserSettings.h"
 #import "TaskCategory.h"
@@ -158,8 +158,8 @@ static NSString * const CellIdentifier = @"TaskCell";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *nvc = (UINavigationController *)segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"showNewTask"]) {
-        TaskDetailViewController *taskDetailController = (TaskDetailViewController*)nvc.topViewController;
-        taskDetailController.unwindDelegate = self;
+        EditTaskController *editTaskController = (EditTaskController*)nvc.topViewController;
+        editTaskController.unwindDelegate = self;
 
     }
 }
@@ -167,7 +167,7 @@ static NSString * const CellIdentifier = @"TaskCell";
 #pragma mark - UnwindDelegate
 
 -(void)unwind:(UIViewController*)controller {
-    if ([controller isKindOfClass:[TaskDetailViewController class]]) {
+    if ([controller isKindOfClass:[EditTaskController class]]) {
         // retrieve return data from ctrl if necessary
     }
     [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -217,8 +217,7 @@ static NSString * const CellIdentifier = @"TaskCell";
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     request.predicate = [NSPredicate predicateWithFormat:@"complete = %@", [NSNumber numberWithBool:NO]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"due"
-                                                              ascending:YES
-                                                               selector:@selector(localizedStandardCompare:)]];
+                                                              ascending:YES]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:context

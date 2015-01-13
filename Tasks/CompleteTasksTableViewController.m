@@ -56,8 +56,7 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     request.predicate = [NSPredicate predicateWithFormat:@"complete = %@", [NSNumber numberWithBool:YES]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"due"
-                                                              ascending:YES
-                                                               selector:@selector(localizedStandardCompare:)]];
+                                                              ascending:YES]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:context
