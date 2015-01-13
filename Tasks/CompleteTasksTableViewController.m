@@ -27,6 +27,13 @@
     }
 }
 
+#pragma mark - UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // override not to perform segue
+    return nil;
+}
+
 #pragma mark - Helper Methods
 
 - (NSArray *)rightButtons

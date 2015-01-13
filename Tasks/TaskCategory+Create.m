@@ -20,6 +20,7 @@
         NSError *error;
         NSArray *matches = [context executeFetchRequest:request error:&error];
         
+        // category with given name must be unique!
         if (!matches || ([matches count] > 1)) {
             //TODO handle error
         } else if (![matches count]) {

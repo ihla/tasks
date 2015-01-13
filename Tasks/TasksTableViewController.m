@@ -21,6 +21,7 @@ static NSString * const CellIdentifier = @"TaskCell";
 
 @property (nonatomic) NSDictionary *colors;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic) Task *selectedTask;
 
 @end
 
@@ -104,6 +105,13 @@ static NSString * const CellIdentifier = @"TaskCell";
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedTask = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"showTask" sender:self];
+}
+
 #pragma mark - Helper Methods
 
 - (void)addCompleteButton:(NSMutableArray *)utilityButtons
@@ -161,6 +169,10 @@ static NSString * const CellIdentifier = @"TaskCell";
         EditTaskController *editTaskController = (EditTaskController*)nvc.topViewController;
         editTaskController.unwindDelegate = self;
 
+    } else if ([segue.identifier isEqualToString:@"showTask"]) {
+        EditTaskController *editTaskController = (EditTaskController*)nvc.topViewController;
+        editTaskController.unwindDelegate = self;
+        editTaskController.task = self.selectedTask;
     }
 }
 

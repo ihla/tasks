@@ -19,6 +19,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iW5-fM-9Bd" id="9Zk-gr-Mmq">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="oFz-H4-dpW" kind="presentation" identifier="showTask" id="ZOI-mf-IhF"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -77,31 +80,11 @@
                                     <segue destination="BU4-3I-Yyv" kind="presentation" identifier="showCategory" id="ld1-Dd-9m0"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="remindMeCell" id="5Fu-85-68B">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="remindMeCell" id="5Fu-85-68B" customClass="Re">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Fu-85-68B" id="Gor-iE-oPm">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me on day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOG-FV-Ty7">
-                                            <rect key="frame" x="16" y="11" width="145" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="leg-xs-GzS">
-                                            <rect key="frame" x="535" y="6" width="51" height="31"/>
-                                            <connections>
-                                                <action selector="switchAlarm:" destination="vfe-he-MTw" eventType="valueChanged" id="wdA-se-le4"/>
-                                            </connections>
-                                        </switch>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="leg-xs-GzS" secondAttribute="centerY" id="5mV-YY-qcm"/>
-                                        <constraint firstAttribute="centerY" secondItem="FOG-FV-Ty7" secondAttribute="centerY" id="bzq-dM-XF8"/>
-                                        <constraint firstItem="FOG-FV-Ty7" firstAttribute="leading" secondItem="Gor-iE-oPm" secondAttribute="leadingMargin" constant="8" id="efw-95-S2K"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="leg-xs-GzS" secondAttribute="trailing" constant="8" id="l5h-0L-hSW"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="dateCell" textLabel="5fc-9h-v9W" detailTextLabel="bY2-oe-qTA" style="IBUITableViewCellStyleValue1" id="Xat-al-0AQ">
@@ -607,5 +590,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="33W-ci-vkh"/>
+        <segue reference="ZOI-mf-IhF"/>
     </inferredMetricsTieBreakers>
 </document>

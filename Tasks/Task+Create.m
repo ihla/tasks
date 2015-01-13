@@ -24,9 +24,9 @@
         NSError *error;
         NSArray *matches = [context executeFetchRequest:request error:&error];
         
-        if (!matches || ([matches count] > 1)) {
+        if (!matches) {
             //TODO handle error
-        } else if (![matches count]) {
+        } else {
             task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:context];
             task.name = name;
             task.category = category;
@@ -44,8 +44,6 @@
                 NSLog(@"%@", error);
             }
 
-        } else {
-            task = [matches lastObject];
         }
     }
     

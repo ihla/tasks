@@ -10,6 +10,7 @@
 
 @interface Task (Update)
 
--(void)updateWithComplete:(BOOL)complete;
+- (void)updateWithComplete:(BOOL)complete;
+- (void) updateWithName:(NSString *)name category:(TaskCategory *)category date:(NSDate *)date;
 
 @end

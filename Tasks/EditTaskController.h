@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "UnwindDelegate.h"
 
+@class Task;
+
 @interface EditTaskController : UITableViewController
 
 @property (nonatomic, weak) id<UnwindDelegate> unwindDelegate;
+@property (nonatomic) Task* task;
 
 @end

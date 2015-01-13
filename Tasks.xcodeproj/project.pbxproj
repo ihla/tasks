@@ -29,6 +29,8 @@
 		2024EFBC1A650A3900C4D3C3 /* CompleteTasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFBB1A650A3900C4D3C3 /* CompleteTasksTableViewController.m */; };
 		2024EFBF1A65185F00C4D3C3 /* Task+Delete.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFBE1A65185F00C4D3C3 /* Task+Delete.m */; };
 		2024EFC21A651AB600C4D3C3 /* Task+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFC11A651AB600C4D3C3 /* Task+Update.m */; };
+		2024EFC41A65385200C4D3C3 /* RemindMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2024EFC31A65385200C4D3C3 /* RemindMeCell.xib */; };
+		2024EFC71A65398100C4D3C3 /* RemindMeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFC61A65398100C4D3C3 /* RemindMeCell.m */; };
 		20CA618E1A61109B0078153D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA618D1A61109B0078153D /* main.m */; };
 		20CA61911A61109B0078153D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61901A61109B0078153D /* AppDelegate.m */; };
 		20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61921A61109B0078153D /* Tasks.xcdatamodeld */; };
@@ -98,6 +100,9 @@
 		2024EFBE1A65185F00C4D3C3 /* Task+Delete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+Delete.m"; sourceTree = "<group>"; };
 		2024EFC01A651AB600C4D3C3 /* Task+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+Update.h"; sourceTree = "<group>"; };
 		2024EFC11A651AB600C4D3C3 /* Task+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+Update.m"; sourceTree = "<group>"; };
+		2024EFC31A65385200C4D3C3 /* RemindMeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemindMeCell.xib; sourceTree = "<group>"; };
+		2024EFC51A65398100C4D3C3 /* RemindMeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindMeCell.h; sourceTree = "<group>"; };
+		2024EFC61A65398100C4D3C3 /* RemindMeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindMeCell.m; sourceTree = "<group>"; };
 		20CA61881A61109B0078153D /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CA618C1A61109B0078153D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CA618D1A61109B0078153D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -174,6 +179,9 @@
 		2024EF931A63CA6800C4D3C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2024EFC31A65385200C4D3C3 /* RemindMeCell.xib */,
+				2024EFC51A65398100C4D3C3 /* RemindMeCell.h */,
+				2024EFC61A65398100C4D3C3 /* RemindMeCell.m */,
 				2024EF651A61354C00C4D3C3 /* TaskCell.h */,
 				2024EF661A61354C00C4D3C3 /* TaskCell.m */,
 				20CA61B71A612CA50078153D /* TaskCell.xib */,
@@ -384,6 +392,7 @@
 				20CA619D1A61109B0078153D /* Main.storyboard in Resources */,
 				2024EFB01A6415B100C4D3C3 /* TextFieldCell.xib in Resources */,
 				20CA61A21A61109B0078153D /* LaunchScreen.xib in Resources */,
+				2024EFC41A65385200C4D3C3 /* RemindMeCell.xib in Resources */,
 				20CA619F1A61109B0078153D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +453,7 @@
 				2024EFB31A64164100C4D3C3 /* TextFieldCell.m in Sources */,
 				2024EF871A63ACC300C4D3C3 /* CategorySettingsController.m in Sources */,
 				2024EF671A61354C00C4D3C3 /* TaskCell.m in Sources */,
+				2024EFC71A65398100C4D3C3 /* RemindMeCell.m in Sources */,
 				2024EF751A62B41000C4D3C3 /* CategoryListController.m in Sources */,
 				2024EF6D1A61614300C4D3C3 /* EditTaskController.m in Sources */,
 				2024EF811A62E2CA00C4D3C3 /* ColorUtils.m in Sources */,

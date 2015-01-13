@@ -16,8 +16,10 @@
 #import "EditTaskController.h"
 #import "CategoryListController.h"
 #import "TextFieldCell.h"
+#import "RemindMeCell.h"
 #import "TaskCategory+Retrieve.h"
 #import "Task+Create.h"
+#import "Task+Update.h"
 
 #define kDatePickerTag              99     // view tag identifiying the date picker view
 
@@ -54,6 +56,8 @@ static NSInteger kNumberOfSections = 3;
 @property (nonatomic) NSIndexPath *categoryIndexPath;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (assign) BOOL alarmOn;
+@property (nonatomic) NSString *setName;
+@property (weak, nonatomic) UISwitch *alarmSwitch;
 
 @end
 
@@ -65,7 +69,13 @@ static NSInteger kNumberOfSections = 3;
     if (self.textField && [self.textField.text length]) {
         NSString *name = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         NSDate *date = self.alarmOn == YES ? self.setDate : nil;
-        [Task taskWithName:name category:self.selectedCategory date:date inManagedObjectContext:self.managedObjectContext];
+        if (self.task) {
+            // update task
+            [self.task updateWithName:name category:self.selectedCategory date:date];
+        } else {
+            // create task
+            [Task taskWithName:name category:self.selectedCategory date:date inManagedObjectContext:self.managedObjectContext];
+        }
         [self.unwindDelegate unwind:self];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name empty." message:@"Task must have a name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -121,9 +131,10 @@ static NSInteger kNumberOfSections = 3;
     self.managedObjectContext = [delegate managedObjectContext];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TextFieldCell" bundle:nil] forCellReuseIdentifier:kNameCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RemindMeCell" bundle:nil] forCellReuseIdentifier:kRemindMeCellID];
+
     
     self.categoryIndexPath = [NSIndexPath indexPathForRow:kCategoryRow inSection:kCategorySection];
-    self.selectedCategory = [TaskCategory retrieveCategoryWithName:@"Chore" inManagedObjectContext:self.managedObjectContext];
     
     self.alarmSectionNumberOfRows = kNumberOfStaticRowsInAlarmSection;
     
@@ -144,6 +155,16 @@ static NSInteger kNumberOfSections = 3;
                                              selector:@selector(localeChanged:)
                                                  name:NSCurrentLocaleDidChangeNotification
                                                object:nil];
+    
+    self.selectedCategory = self.task ? self.task.category : [TaskCategory retrieveCategoryWithName:@"Chore" inManagedObjectContext:self.managedObjectContext];
+    if (self.task) {
+        self.setName = self.task.name;
+        if (self.task.due) {
+            self.setDate = self.task.due;
+            self.alarmOn = YES;
+            [self insertAlarmRow];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -283,6 +304,7 @@ static NSInteger kNumberOfSections = 3;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         TextFieldCell *nameCell = (TextFieldCell*)cell;
         self.textField = nameCell.textField;
+        if (self.setName) [nameCell.textField setText:self.setName];
     }
     
     if ([cellID isEqualToString:kCategoryCellID]) {
@@ -292,6 +314,13 @@ static NSInteger kNumberOfSections = 3;
     if ([cellID isEqualToString:kRemindMeCellID])
     {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        RemindMeCell *remindMeCell = (RemindMeCell*)cell;
+        [remindMeCell.alarmSwitch addTarget:self action:@selector(switchAlarm:) forControlEvents:UIControlEventValueChanged];
+        if (self.alarmOn != remindMeCell.alarmSwitch.on) {
+            // only to reflect default setting
+            remindMeCell.alarmSwitch.on = self.alarmOn;
+        }
+        self.alarmSwitch = remindMeCell.alarmSwitch;
     }
 
     if ([cellID isEqualToString:kDateCellID])
