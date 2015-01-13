@@ -71,6 +71,7 @@ static NSString * const CellIdentifier = @"TaskCell";
 
     // if task order in user defaults is changed, we need to refresh table
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:[UserSettings taskOrderKey] options:NSKeyValueObservingOptionNew context:NULL];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:[UserSettings notificationsEnabledKey] options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,6 +86,7 @@ static NSString * const CellIdentifier = @"TaskCell";
                                                   object:nil];
 
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:[UserSettings taskOrderKey]];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:[UserSettings notificationsEnabledKey]];
 }
 
 #pragma mark - Table view data source
@@ -180,10 +182,28 @@ static NSString * const CellIdentifier = @"TaskCell";
 
 -(void)unwind:(UIViewController*)controller {
     if ([controller isKindOfClass:[EditTaskController class]]) {
-        // retrieve return data from ctrl if necessary
+        
+        Task *task = ((EditTaskController*)controller).task;
+        NSDate *alarmDate = task.due;
+        if (alarmDate && [UserSettings notificationsEnabled]) {
+            [self scheduleNotificationWithTask:task];
+        }
+        
     }
     [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 
+}
+
+-(void)scheduleNotificationWithTask:(Task*)task {
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = task.due;
+    notification.alertBody = [NSString stringWithFormat:@"Task %@ is due.", task.name];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.applicationIconBadgeNumber = 1;
+    // no need to send id, this is solely for a test
+    NSURL *objectURL = [task.objectID URIRepresentation];
+    notification.userInfo = @{ @"objectID" : [objectURL absoluteString], @"name" : task.name };
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 #pragma mark - Locale
@@ -201,11 +221,24 @@ static NSString * const CellIdentifier = @"TaskCell";
 #pragma mark - User Defaults observer
 
 - (void)observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change:(NSDictionary *) change context:(void *) context {
-    if([keyPath isEqual:[UserSettings taskOrderKey]]) {
+    if ([keyPath isEqual:[UserSettings taskOrderKey]]) {
         if ([UserSettings tasksOrder] == ALPHABETICAL) {
             [self fetchTaskSortedAlphabeticallyWithContext:self.managedObjectContext];
         } else {
             [self fetchTaskSortedChronologicallyWithContext:self.managedObjectContext];
+        }
+    } else if ([keyPath isEqual:[UserSettings notificationsEnabledKey]]) {
+        if ([UserSettings notificationsEnabled]) {
+            for (Task *task in [self.fetchedResultsController fetchedObjects]) {
+                BOOL isDueLater = [task.due compare:[NSDate date]] == NSOrderedDescending;
+                BOOL isNotComplete = [task.complete isEqualToNumber:[NSNumber numberWithBool:NO]];
+                if (isNotComplete && isDueLater) {
+                    [self scheduleNotificationWithTask:task];
+                }
+            }
+            
+        } else {
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }
     }
 }

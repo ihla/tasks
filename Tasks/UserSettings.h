@@ -22,4 +22,6 @@ enum Order { ALPHABETICAL, CHRONOLOGICAL};
 
 +(NSString*)taskOrderKey;
 
++(NSString*)notificationsEnabledKey;
+
 @end

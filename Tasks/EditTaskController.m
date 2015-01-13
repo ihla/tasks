@@ -74,7 +74,7 @@ static NSInteger kNumberOfSections = 3;
             [self.task updateWithName:name category:self.selectedCategory date:date];
         } else {
             // create task
-            [Task taskWithName:name category:self.selectedCategory date:date inManagedObjectContext:self.managedObjectContext];
+            self.task = [Task taskWithName:name category:self.selectedCategory date:date inManagedObjectContext:self.managedObjectContext];
         }
         [self.unwindDelegate unwind:self];
     } else {

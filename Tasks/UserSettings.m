@@ -8,7 +8,7 @@
 
 #import "UserSettings.h"
 
-static NSString * const NOTIFICATIONS = @"online";
+static NSString * const NOTIFICATIONS = @"notifications";
 static NSString * const ENABLED = @"on";
 static NSString * const DISABLED = @"off";
 
@@ -46,6 +46,10 @@ static NSString * const CHRONOLOGICAL_ORDER = @"chronological";
 
 +(NSString*)taskOrderKey {
     return TASK_ORDER;
+}
+
++(NSString*)notificationsEnabledKey {
+    return NOTIFICATIONS;
 }
 
 @end

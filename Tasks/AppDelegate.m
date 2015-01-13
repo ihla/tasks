@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "TaskCategory+Create.h"
+#import "Task.h"
 #import "ColorNames.h"
+#import "UserSettings.h"
 
 @interface AppDelegate ()
 
@@ -20,13 +22,44 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // handle local notification
+    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (notification) {
+        [self handleNotification:notification];
+        application.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
+    }
+    
     // set defaults
     [TaskCategory categoryWithName:@"Chore" colorName:Purple inManagedObjectContext:self.managedObjectContext];
     [TaskCategory categoryWithName:@"Study" colorName:Green inManagedObjectContext:self.managedObjectContext];
     [TaskCategory categoryWithName:@"Work" colorName:Yellow inManagedObjectContext:self.managedObjectContext];
     [TaskCategory categoryWithName:@"Misc" colorName:Brown inManagedObjectContext:self.managedObjectContext];
+    [UserSettings setNotificationsEnabled:YES];
+    
+    // register for notifications
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [self handleNotification:notification];
+    application.applicationIconBadgeNumber = notification.applicationIconBadgeNumber - 1;
+}
+
+- (void)handleNotification:(UILocalNotification *)notification {
+    NSString *name = [notification.userInfo objectForKey:@"name"];
+    
+    // retrieve objectID - no need to pass id
+//    NSString *objectURL = [notification.userInfo objectForKey:@"objectID"];
+//    NSURL *urlID = [[NSURL alloc] initWithString:objectURL];
+//    NSManagedObjectID *objId = [self.persistentStoreCoordinator managedObjectIDForURIRepresentation:urlID];
+//    NSLog(@"retrieved objID %@", objId);
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder" message:[NSString stringWithFormat:@"Task %@ is due", name] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
