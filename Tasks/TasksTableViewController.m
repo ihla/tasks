@@ -11,8 +11,9 @@
 #import "TaskDetailViewController.h"
 #import "ColorUtils.h"
 #import "UserSettings.h"
-#import "Task.h"
 #import "TaskCategory.h"
+#import "Task+Delete.h"
+#import "Task+Update.h"
 
 static NSString * const CellIdentifier = @"TaskCell";
 
@@ -132,36 +133,25 @@ static NSString * const CellIdentifier = @"TaskCell";
 #pragma mark - SWTableViewDelegate
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
-    switch (index) {
-        case 0:
-            NSLog(@"check button was pressed");
-            break;
-        case 1:
-            NSLog(@"clock button was pressed");
-            break;
-        case 2:
-            NSLog(@"cross button was pressed");
-            break;
-        case 3:
-            NSLog(@"list button was pressed");
-        default:
-            break;
-    }
 }
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self didTriggerRightUtilityButtonWithIndex:index forTask:task];
+}
+
+-(void)didTriggerRightUtilityButtonWithIndex:(NSInteger)index forTask:(Task*)task {
     switch (index) {
         case 0:
-            NSLog(@"More button was pressed");
+            [task updateWithComplete:YES];
             break;
         case 1:
-            NSLog(@"Delete button was pressed");
+            [task delete];
         default:
             break;
     }
 }
-
-
 
 #pragma mark - Navigation
 
@@ -212,7 +202,7 @@ static NSString * const CellIdentifier = @"TaskCell";
 
 -(void)fetchTaskSortedAlphabeticallyWithContext:(NSManagedObjectContext*)context {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    request.predicate = nil;
+    request.predicate = [NSPredicate predicateWithFormat:@"complete = %@", [NSNumber numberWithBool:NO]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                               ascending:YES
                                                                selector:@selector(localizedStandardCompare:)]];
@@ -225,7 +215,7 @@ static NSString * const CellIdentifier = @"TaskCell";
 
 -(void)fetchTaskSortedChronologicallyWithContext:(NSManagedObjectContext*)context {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    request.predicate = nil;
+    request.predicate = [NSPredicate predicateWithFormat:@"complete = %@", [NSNumber numberWithBool:NO]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"due"
                                                               ascending:YES
                                                                selector:@selector(localizedStandardCompare:)]];

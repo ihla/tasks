@@ -27,6 +27,8 @@
 		2024EFB61A641F6800C4D3C3 /* TaskCategory+Retrieve.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFB51A641F6800C4D3C3 /* TaskCategory+Retrieve.m */; };
 		2024EFB91A64485C00C4D3C3 /* TaskCategory+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFB81A64485C00C4D3C3 /* TaskCategory+Update.m */; };
 		2024EFBC1A650A3900C4D3C3 /* CompleteTasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFBB1A650A3900C4D3C3 /* CompleteTasksTableViewController.m */; };
+		2024EFBF1A65185F00C4D3C3 /* Task+Delete.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFBE1A65185F00C4D3C3 /* Task+Delete.m */; };
+		2024EFC21A651AB600C4D3C3 /* Task+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 2024EFC11A651AB600C4D3C3 /* Task+Update.m */; };
 		20CA618E1A61109B0078153D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA618D1A61109B0078153D /* main.m */; };
 		20CA61911A61109B0078153D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61901A61109B0078153D /* AppDelegate.m */; };
 		20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CA61921A61109B0078153D /* Tasks.xcdatamodeld */; };
@@ -92,6 +94,10 @@
 		2024EFB81A64485C00C4D3C3 /* TaskCategory+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TaskCategory+Update.m"; sourceTree = "<group>"; };
 		2024EFBA1A650A3900C4D3C3 /* CompleteTasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteTasksTableViewController.h; sourceTree = "<group>"; };
 		2024EFBB1A650A3900C4D3C3 /* CompleteTasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTasksTableViewController.m; sourceTree = "<group>"; };
+		2024EFBD1A65185F00C4D3C3 /* Task+Delete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+Delete.h"; sourceTree = "<group>"; };
+		2024EFBE1A65185F00C4D3C3 /* Task+Delete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+Delete.m"; sourceTree = "<group>"; };
+		2024EFC01A651AB600C4D3C3 /* Task+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+Update.h"; sourceTree = "<group>"; };
+		2024EFC11A651AB600C4D3C3 /* Task+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+Update.m"; sourceTree = "<group>"; };
 		20CA61881A61109B0078153D /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CA618C1A61109B0078153D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CA618D1A61109B0078153D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,6 +137,10 @@
 		2024EF911A63C98200C4D3C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2024EFBD1A65185F00C4D3C3 /* Task+Delete.h */,
+				2024EFBE1A65185F00C4D3C3 /* Task+Delete.m */,
+				2024EFC01A651AB600C4D3C3 /* Task+Update.h */,
+				2024EFC11A651AB600C4D3C3 /* Task+Update.m */,
 				2024EFA81A63DB4C00C4D3C3 /* Task+Create.h */,
 				2024EFA91A63DB4C00C4D3C3 /* Task+Create.m */,
 				2024EFA51A63D75800C4D3C3 /* TaskCategory+Create.h */,
@@ -442,11 +452,13 @@
 				2024EF8A1A63B95200C4D3C3 /* UserSettings.m in Sources */,
 				2024EF7B1A62DBFF00C4D3C3 /* EditCategoryController.m in Sources */,
 				20CA61911A61109B0078153D /* AppDelegate.m in Sources */,
+				2024EFC21A651AB600C4D3C3 /* Task+Update.m in Sources */,
 				2024EF6A1A6138CA00C4D3C3 /* TasksTableViewController.m in Sources */,
 				2024EFB61A641F6800C4D3C3 /* TaskCategory+Retrieve.m in Sources */,
 				2024EF841A63A7EB00C4D3C3 /* BaseCategoryTableViewController.m in Sources */,
 				20CA618E1A61109B0078153D /* main.m in Sources */,
 				20CA61941A61109B0078153D /* Tasks.xcdatamodeld in Sources */,
+				2024EFBF1A65185F00C4D3C3 /* Task+Delete.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

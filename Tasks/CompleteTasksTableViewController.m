@@ -7,6 +7,8 @@
 //
 
 #import "CompleteTasksTableViewController.h"
+#import "SWTableViewCell.h"
+#import "Task+Delete.h"
 
 @interface CompleteTasksTableViewController ()
 
@@ -14,12 +16,23 @@
 
 @implementation CompleteTasksTableViewController
 
+#pragma mark - SWTableViewDelegate
+
+-(void)didTriggerRightUtilityButtonWithIndex:(NSInteger)index forTask:(Task*)task {
+    switch (index) {
+        case 0:
+            [task delete];
+        default:
+            break;
+    }
+}
+
 #pragma mark - Helper Methods
 
 - (NSArray *)rightButtons
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [super addDeleteButton:rightUtilityButtons];
+    [self addDeleteButton:rightUtilityButtons];
     
     return rightUtilityButtons;
 }

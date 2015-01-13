@@ -8,10 +8,13 @@
 
 #import "CoreDataTableViewController.h"
 
+@class Task;
+
 @interface TasksTableViewController : CoreDataTableViewController
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
+// helper methods for subclass
 - (void)addDeleteButton:(NSMutableArray *)utilityButtons;
 
 @end
