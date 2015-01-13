@@ -10,7 +10,7 @@
  * NOTE:    This implementation is based on the sources from Apple DateCell sample
  *          (https://developer.apple.com/library/ios/samplecode/DateCell/)
  *          and is adapted to my needs.
- *          The code is a work in progress and needs further refactoring.
+ *          The code is a work in progress and needs further refactoring to clean it.
  */
 
 #import "TaskDetailViewController.h"
@@ -91,7 +91,7 @@ static NSInteger kNumberOfSections = 3;
     {
         // inline date picker: update the cell's date "above" the date picker cell
         //
-        targetedCellIndexPath = [NSIndexPath indexPathForRow:self.datePickerIndexPath.row - 1 inSection:0];
+        targetedCellIndexPath = [NSIndexPath indexPathForRow:self.datePickerIndexPath.row - 1 inSection:kAlarmSection];
     }
     else
     {
@@ -304,6 +304,7 @@ static NSInteger kNumberOfSections = 3;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell.reuseIdentifier == kDateCellID)
     {
+        [self.textField resignFirstResponder];
         [self displayInlineDatePickerForRowAtIndexPath:indexPath];
     }
     else
