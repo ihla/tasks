@@ -10,6 +10,7 @@
 #import "TaskCell.h"
 #import "TaskDetailViewController.h"
 #import "ColorUtils.h"
+#import "UserSettings.h"
 #import "Task.h"
 #import "TaskCategory.h"
 
@@ -27,10 +28,17 @@ static NSString * const CellIdentifier = @"TaskCell";
 
 #pragma mark - Accessories
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     _managedObjectContext = managedObjectContext;
     
+    if ([UserSettings tasksOrder] == ALPHABETICAL) {
+        [self fetchTaskSortedAlphabetically];
+    } else {
+        [self fetchTaskSortedChronologically];
+    }
+}
+
+-(void)fetchTaskSortedAlphabetically {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     request.predicate = nil;
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
@@ -38,7 +46,20 @@ static NSString * const CellIdentifier = @"TaskCell";
                                                                selector:@selector(localizedStandardCompare:)]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:managedObjectContext
+                                                                        managedObjectContext:self.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+-(void)fetchTaskSortedChronologically {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"due"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)]];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.managedObjectContext
                                                                           sectionNameKeyPath:nil
                                                                                    cacheName:nil];
 }
@@ -73,6 +94,8 @@ static NSString * const CellIdentifier = @"TaskCell";
                                                  name:NSCurrentLocaleDidChangeNotification
                                                object:nil];
 
+    // if task order in user defaults is changed, we need to refresh table
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:[UserSettings taskOrderKey] options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,6 +108,8 @@ static NSString * const CellIdentifier = @"TaskCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSCurrentLocaleDidChangeNotification
                                                   object:nil];
+
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:[UserSettings taskOrderKey]];
 }
 
 #pragma mark - Table view data source
@@ -190,6 +215,18 @@ static NSString * const CellIdentifier = @"TaskCell";
     // update the date format in the table view cells
     //
     [self.tableView reloadData];
+}
+
+#pragma mark - User Defaults observer
+
+- (void)observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change:(NSDictionary *) change context:(void *) context {
+    if([keyPath isEqual:[UserSettings taskOrderKey]]) {
+        if ([UserSettings tasksOrder] == ALPHABETICAL) {
+            [self fetchTaskSortedAlphabetically];
+        } else {
+            [self fetchTaskSortedChronologically];
+        }
+    }
 }
 
 @end

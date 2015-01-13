@@ -44,4 +44,8 @@ static NSString * const CHRONOLOGICAL_ORDER = @"chronological";
     return order;
 }
 
++(NSString*)taskOrderKey {
+    return TASK_ORDER;
+}
+
 @end

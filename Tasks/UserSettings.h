@@ -20,4 +20,6 @@ enum Order { ALPHABETICAL, CHRONOLOGICAL};
 
 +(enum Order)tasksOrder;
 
++(NSString*)taskOrderKey;
+
 @end
