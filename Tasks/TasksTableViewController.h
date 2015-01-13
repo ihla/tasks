@@ -10,4 +10,8 @@
 
 @interface TasksTableViewController : CoreDataTableViewController
 
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
+- (void)addDeleteButton:(NSMutableArray *)utilityButtons;
+
 @end

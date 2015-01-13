@@ -18,7 +18,6 @@ static NSString * const CellIdentifier = @"TaskCell";
 
 @interface TasksTableViewController () <SWTableViewCellDelegate, UnwindDelegate>
 
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSDictionary *colors;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
@@ -32,36 +31,10 @@ static NSString * const CellIdentifier = @"TaskCell";
     _managedObjectContext = managedObjectContext;
     
     if ([UserSettings tasksOrder] == ALPHABETICAL) {
-        [self fetchTaskSortedAlphabetically];
+        [self fetchTaskSortedAlphabeticallyWithContext:managedObjectContext];
     } else {
-        [self fetchTaskSortedChronologically];
+        [self fetchTaskSortedChronologicallyWithContext:managedObjectContext];
     }
-}
-
--(void)fetchTaskSortedAlphabetically {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    request.predicate = nil;
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                              ascending:YES
-                                                               selector:@selector(localizedStandardCompare:)]];
-    
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil
-                                                                                   cacheName:nil];
-}
-
--(void)fetchTaskSortedChronologically {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    request.predicate = nil;
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"due"
-                                                              ascending:YES
-                                                               selector:@selector(localizedStandardCompare:)]];
-    
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil
-                                                                                   cacheName:nil];
 }
 
 -(NSDictionary*)colors {
@@ -130,17 +103,23 @@ static NSString * const CellIdentifier = @"TaskCell";
     return cell;
 }
 
-#pragma mark - Heleper Methods
+#pragma mark - Helper Methods
+
+- (void)addCompleteButton:(NSMutableArray *)utilityButtons
+{
+    [utilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0] title:@"Complete"];
+}
+
+- (void)addDeleteButton:(NSMutableArray *)utilityButtons
+{
+    [utilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f] title:@"Delete"];
+}
 
 - (NSArray *)rightButtons
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                title:@"More"];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:@"Delete"];
+    [self addCompleteButton:rightUtilityButtons];
+    [self addDeleteButton:rightUtilityButtons];
     
     return rightUtilityButtons;
 }
@@ -222,11 +201,39 @@ static NSString * const CellIdentifier = @"TaskCell";
 - (void)observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change:(NSDictionary *) change context:(void *) context {
     if([keyPath isEqual:[UserSettings taskOrderKey]]) {
         if ([UserSettings tasksOrder] == ALPHABETICAL) {
-            [self fetchTaskSortedAlphabetically];
+            [self fetchTaskSortedAlphabeticallyWithContext:self.managedObjectContext];
         } else {
-            [self fetchTaskSortedChronologically];
+            [self fetchTaskSortedChronologicallyWithContext:self.managedObjectContext];
         }
     }
+}
+
+#pragma mark - Fetch Requests
+
+-(void)fetchTaskSortedAlphabeticallyWithContext:(NSManagedObjectContext*)context {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)]];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:context
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+-(void)fetchTaskSortedChronologicallyWithContext:(NSManagedObjectContext*)context {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"due"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)]];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:context
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
 }
 
 @end

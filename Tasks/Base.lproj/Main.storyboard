@@ -228,7 +228,7 @@
         <!--Complete TableView-->
         <scene sceneID="laC-Vl-lPq">
             <objects>
-                <tableViewController id="EIt-kA-L04" userLabel="Complete TableView" customClass="TasksTableViewController" sceneMemberID="viewController">
+                <tableViewController id="EIt-kA-L04" userLabel="Complete TableView" customClass="CompleteTasksTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hRi-hA-Tvi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
