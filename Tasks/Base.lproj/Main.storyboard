@@ -393,7 +393,7 @@
         <scene sceneID="0ji-9e-YfP">
             <objects>
                 <navigationController title="Incomplete" automaticallyAdjustsScrollViewInsets="NO" id="dds-Pc-OxW" userLabel="Incomplete NavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Incomplete" id="QQd-GS-Lk1"/>
+                    <tabBarItem key="tabBarItem" title="Incomplete" image="incomplete" id="QQd-GS-Lk1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wC3-1P-2ni">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -432,7 +432,7 @@
         <scene sceneID="tNm-Rw-ndg">
             <objects>
                 <navigationController title="Complete" automaticallyAdjustsScrollViewInsets="NO" id="kav-qT-299" userLabel="Complete NavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Complete" id="2el-6Q-yUy"/>
+                    <tabBarItem key="tabBarItem" title="Complete" image="complete" id="2el-6Q-yUy"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rhg-0l-CHL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -451,7 +451,7 @@
         <scene sceneID="YdX-4Q-5Ad">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zgm-Je-UHq" userLabel="Settings NavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="eVG-8t-aFm"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="eVG-8t-aFm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="owW-gL-UVQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -588,6 +588,11 @@
             <point key="canvasLocation" x="4385" y="1077"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="complete" width="32" height="32"/>
+        <image name="incomplete" width="32" height="32"/>
+        <image name="settings" width="32" height="32"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="33W-ci-vkh"/>
         <segue reference="ZOI-mf-IhF"/>
